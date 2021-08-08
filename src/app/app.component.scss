@@ -1,0 +1,28 @@
+ion-list, ion-item, ion-content {
+	background-color: var(--app-background-page-color);
+	--background: var(--app-background-page-color);
+}
+
+ion-list-header {
+	margin-bottom: 30px;
+}
+
+.back-to-app {
+	border-bottom: 1px solid var(--ion-color-light);
+	margin-bottom: 20px;
+	cursor: pointer;
+}
+
+.nav-logo {
+	height: 60px;
+}
+
+ion-item:hover {
+	ion-label {
+		color: var(--ion-color-light);
+		font-weight: bold;
+	}
+}
+
+
+

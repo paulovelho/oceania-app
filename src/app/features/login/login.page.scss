@@ -1,0 +1,44 @@
+.login-box {
+
+	.login-title {
+		text-align: center;
+		.logo {
+			margin-top: 50px;
+			width: 200px;
+		}
+		h4 {
+			margin-top: 0;
+		}
+	}
+
+	width: 50%;
+	margin: 100px auto;
+	display: block;
+	background: var(--app-background-color);
+	--ion-background-color: #FFF !important;
+	background-color: var(--app-background-color) !important;
+}
+
+ion-label {
+	--color: var(--app-text);
+}
+ion-input {
+	color: black;
+	--color: black;
+}
+
+ion-row, ion-col, form {
+	--ion-background-color: var(--app-background-color) !important;
+	background-color: var(--app-background-color) !important;
+}
+
+ion-item {
+	--border-width: 0;
+	background: var(--app-background-color);
+	--background: var(--app-background-color);
+}
+
+.full-line {
+	width: 100%;
+	display: block;
+}

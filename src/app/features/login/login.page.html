@@ -1,0 +1,44 @@
+<ion-content>
+
+	<div class="login-box drop-shadow">
+		<div class="login-title">
+			<h2 class="card-title">
+				<img src="/assets/img/logo/logo.png" class="logo" title="Oceania App" />
+			</h2>
+
+			<h4 class="center">{{clientTitle}}</h4>
+		</div>
+		<hr/>
+
+		<form [formGroup]="form">
+			<ion-list>
+				<ion-item lines="none">
+					<ion-label position="floating" color="primary">Email</ion-label>
+					<ion-input
+						type="text"
+						id="login"
+						formControlName="email"
+						required
+					></ion-input>
+				</ion-item>
+
+				<ion-item lines="none">
+					<ion-label position="floating" color="primary">Password</ion-label>
+					<ion-input
+						type="password"
+						id="password"
+						formControlName="password"
+						required
+					></ion-input>
+				</ion-item>
+
+				<ion-item lines="none">
+					<div class="full-line">
+						<ion-button (click)="login()" type="submit" expand="block">Entrar</ion-button>
+					</div>
+				</ion-item>
+			</ion-list>
+		</form>
+	</div>
+
+</ion-content>

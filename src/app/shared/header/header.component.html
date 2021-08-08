@@ -1,0 +1,13 @@
+<ion-toolbar class="toolbar-header">
+	<ion-buttons slot="start">
+		<ion-menu-button></ion-menu-button>
+	</ion-buttons>
+	<ion-title>
+		<span class="basic-header-title" *ngIf="title">
+			{{title}}
+		</span>
+	</ion-title>
+	<ion-buttons slot="end">
+		<ng-content select="[slot-end]"></ng-content>
+	</ion-buttons>
+</ion-toolbar>
