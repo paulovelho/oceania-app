@@ -1,0 +1,46 @@
+@import "variables";
+
+/* PLATYPUS: */
+.right { text-align: right; }
+.center { text-align: center; }
+
+.toast-container {
+	margin-top: 60px;
+}
+
+i.action {
+	cursor: pointer;
+	color: $action-icon;
+	border: 1px solid $action-icon;
+	padding: 4px;
+	border-radius: 4px;
+	&:hover {
+		color: $action-hover;
+		border: 1px solid $action-hover;
+	}
+}
+
+.cellClick {
+	cursor: pointer;
+	&:hover {
+		background-color: $table-bg-active;
+	}
+}
+
+svg {
+	margin: 0 10px 0 0;
+	&.none {
+		display: none;
+	}
+}
+
+div.card {
+	overflow: inherit;
+}
+.card-header .title {
+	cursor: default;
+	i {
+		margin-right: 10px;
+	}
+}
+

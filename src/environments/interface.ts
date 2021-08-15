@@ -3,4 +3,3 @@ export interface EnvironmentConfig {
 	production: boolean;
 	api: string;
 }
-

@@ -1,63 +1,54 @@
+/* INSTALL DEPENDENCIES:
+npm install -save ngx-toastr  
+*/
 import { Injectable } from '@angular/core';
-import { ToastController } from '@ionic/angular';
-// Toast for IONIC: https://ionicframework.com/docs/v4/api/toast
+import { ToastrService, GlobalConfig } from 'ngx-toastr';
 
 @Injectable()
 export class Toaster {
 
-  private lastToast = null;
+	private options: GlobalConfig;
+  private lastInserted: number[] = [];
 
 	constructor(
-		private Toast: ToastController,
+		public toastrService: ToastrService
 	) {
+		this.options = this.toastrService.toastrConfig;
 	}
 
-	private debug(type, message): void {
-		return;
+	private debug(type: string, message: string): void {
 		console.trace(type + " toaster with message ["+message+"]");
 	}
 
 	public error(message: string): void {
 		this.debug("error", message);
-		this.openToast("error", message, null);
+		this.openToast(this.toastrService.error, message, null);
 	}
 	public success(message: string): void {
-		this.openToast("success", message, null);
+		this.openToast(this.toastrService.success, message, null);
 	}
-	public exception(err): void {
+	public exception(err: any): void {
 		this.debug("error", err);
-		this.openToast("error", err, "ERRO!");
+		this.openToast(this.toastrService.error, err, "ERRO!");
 	}
 	public warning(message: string): void {
-		this.openToast("warning", message, null);
-	}
-	public info(message: string): void {
-		this.openToast("info", message, null);
-	}
-	public denied(): void {
-		const html = 'Efetue novamente o login';
-		this.openToast("error", html, "Acesso negado!");
+		this.openToast(this.toastrService.warning, message, null);
 	}
 
-	public openToast(type, message, title, extendedOptions=null) {
-		this.Toast.create({
-			message,
-			duration: 5000,
-			buttons: [{
-				icon: 'close-circle-outline',
-				role: 'cancel',
-				handler: () => { console.log('Cancel clicked'); },
-			}],
-		})
-		.then((toastData) => {
-			toastData.present();
+	public openToast(toaster: Function, message: string, title: string | null) {
+		setTimeout(() => { // set timeout: https://github.com/angular/material2/issues/5268
+			const inserted = toaster(message, title, this.options);
+			if (inserted) {
+				this.lastInserted.push(inserted.toastId);
+			}
 		});
-		console.info(`[${type}] ${title}`, message);
 	}
 
   public clearToasts() {
+    this.toastrService.clear();
   }
   public clearLastToast() {
+    this.toastrService.clear(this.lastInserted.pop());
   }
 
 }

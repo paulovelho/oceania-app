@@ -1,77 +1,63 @@
 import { Injectable, Output, EventEmitter } from "@angular/core";
 
-interface User {
-	email: string,
-	name: string,
-	role: string,
-	id: string,
-};
-
-
 @Injectable()
 export class Store {
 
-	constructor(
-	) {
-		this.init();
-	}
+  @Output() newLogin = new EventEmitter<any>();
 
-	private init(): void {
-	}
+  constructor(
+  ) {
+    this.init();
+  }
 
+  private init(): void {
+    this.loadUserFromStorage();
+  }
 
-	public set(key, value): void {
-		localStorage.setItem(key, value);
-	}
-	public get(key): any {
-		return localStorage.getItem(key);
-	}
-	public getBool(key): boolean {
-		let b = localStorage.getItem(key);
-		if(b == null) return null;
-		return b === 'true';
-	}
+  public setClient(client: string): void {
+    localStorage.setItem("client", client);
+  }
+  public getClient(): string | null {
+    return localStorage.getItem("client") || null;
+  }
 
-	public isDark(): boolean {
-		return this.getBool("dark-mode");
-	}
+  public setToken(token: string): void {
+    localStorage.setItem("token", token);
+  }
+  public getToken(): string | null {
+    return localStorage.getItem("token") || null;
+  }
 
+  /* USER STORE */
+  private user: any = null;
+  private loadUserFromStorage(): void {
+    let localUser = localStorage.getItem("user");
+    if(!localUser || localUser == "undefined") return;
+    this.user = JSON.parse(localUser);
+  }
+  private saveUserInStorage(user: any): void {
+    localStorage.setItem("user", JSON.stringify(user));
+    this.newLogin.emit(user);
+  }
+  public setLoggedUser(user: any): void {
+    this.user = user;
+    this.saveUserInStorage(user);
+  }
+  public getLoggedUser(): any {
+    return this.user;
+  }
+  public isLogged(): boolean {
+    let user = this.getLoggedUser();
+    let token = this.getToken();
+    if(!user || !token) return false;
+    return(user.email != null);
+  }
 
-
-	public setToken(token: string): void {
-		localStorage.setItem("token", token);
-	}
-	public getToken(): string {
-		return localStorage.getItem("token") || null;
-	}
-
-	public setExpiration(expire: number): void {
-		localStorage.setItem("expires", expire.toString());
-	}
-	public isExpired(): boolean {
-		var ts = Math. round((new Date()). getTime() / 1000);
-		let expires = localStorage.getItem("expires");
-		return (+expires <= ts);
-	}
-
-	/* USER STORE */
-	private user: User = null;
-	public setUser(u: User): void {
-		this.user = u;
-		localStorage.setItem("user", JSON.stringify(u))
-	}
-	public getUser(): any {
-		return this.user;
-	}
-
-	public isLogged(): boolean {
-		let token = this.getToken();
-		if(!token) return false; else return true;
-	}
-
-	public clean(): void {
-		localStorage.removeItem("token");
-	}
+  public clean(): void {
+    this.user = null;
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+  }
 
 
 }

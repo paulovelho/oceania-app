@@ -1,0 +1,4 @@
+<button class="btn transition" [ngClass]='btclass' (click)="doAction()">
+	<i class="fa" [ngClass]='icon'></i> {{ caption }}
+	<span class="subcaption" *ngIf="subcaption">{{ subcaption }}</span>
+</button>

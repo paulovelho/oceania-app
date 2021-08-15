@@ -27,11 +27,8 @@ export class ApiManager {
 				break;
 			case 401:
 				let details = err.error;
-				if(!details || details == "permission denied") {
-					this.ErrorHandler.AccessDenied();
-				} else {
-					this.ErrorCodeManager(details.code, details.data)
-				}
+				if(!details) return this.Toaster.error("Chamada não autorizada!");
+				else this.ErrorCodeManager(details.code, details.data)
 				break;
 			case 200:
 				if(err.statusText == "OK") return;

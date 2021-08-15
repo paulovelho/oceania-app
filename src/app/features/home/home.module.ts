@@ -1,22 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
 
-import { SharedModule } from '@app/shared/shared.module';
+import { SharedModule } from '@app/shared.module';
 
-import { HomePageRoutingModule } from './home-routing.module';
+import { HomePageRoutingModule } from './home.routing';
 
-import { HomePage } from './home.page';
+import { HomeComponent } from './home.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
     HomePageRoutingModule,
     SharedModule,
   ],
-  declarations: [HomePage]
+  declarations: [ HomeComponent ]
 })
-export class HomePageModule {}
+export class HomeModule {}

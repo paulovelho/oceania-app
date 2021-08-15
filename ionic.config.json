@@ -1,7 +1,0 @@
-{
-  "name": "ionic-stock",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}

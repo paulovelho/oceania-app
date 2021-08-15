@@ -1,5 +1,4 @@
 import { BaseModelValidationError, BaseModelValidation } from './base-model-validation.interface';
-import { Validators } from '@angular/forms';
 
 export class BaseModel {
 
@@ -15,7 +14,6 @@ export class BaseModel {
   }
 
 	public from(obj) {
-		if(!obj) return this;
 		let props: Array<string> = Object.getOwnPropertyNames(obj);
 		props.forEach(i => this[i] = obj[i]);
 		if( obj._id ) {
@@ -24,27 +22,9 @@ export class BaseModel {
 		return this;
 	}
 
-	private getFormValidations(validations) {
-		if(!validations) return [];
-		if(validations.length == 0) return [];
-		let validArr = [];
-		validations.map(v => {
-			switch (v) {
-				case "required":
-					validArr.push(Validators.required);
-					break;
-				default:
-					break;
-			}
-		});
-		return validArr;
-	}
 	public getPlainForm() {
 		let form: any = {};
-		this.fields.forEach((i) => {
-			const validation = this.validations[i];
-			form[i] = ['', ...this.getFormValidations(validation)];
-		});
+		this.fields.forEach(i => form[i] = ['']);
 		return form
 	}
 

@@ -1,28 +1,10 @@
-ion-list, ion-item, ion-content {
-	background-color: var(--app-background-page-color);
-	--background: var(--app-background-page-color);
-}
+// @import "~@ng-select/ng-select/themes/default.theme.css";
 
-ion-list-header {
-	margin-bottom: 30px;
-}
+@import "variables";
+@import "mixins";
+@import "bootstrap-override";
+@import "libs-override";
+@import "base";
+@import "addon";
 
-.back-to-app {
-	border-bottom: 1px solid var(--ion-color-light);
-	margin-bottom: 20px;
-	cursor: pointer;
-}
-
-.nav-logo {
-	height: 60px;
-}
-
-ion-item:hover {
-	ion-label {
-		color: var(--ion-color-light);
-		font-weight: bold;
-	}
-}
-
-
-
+@import "forms";

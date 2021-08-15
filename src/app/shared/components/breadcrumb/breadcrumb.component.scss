@@ -1,0 +1,38 @@
+@import "../../styles/variables";
+
+.here{
+	padding: 2px 5px;
+	float: left;
+}
+.breadcrumb{
+	padding: 0;
+	background: transparent;
+	color: $text-color;
+	font-size: 14px;
+	margin-bottom: 30px;
+	margin-left: 10px;
+	float: left;
+	display: inline-block;
+	a {
+		color: $text-color;
+	}
+}
+.breadcrumb-item::before {  
+	color: $text-color;
+	content: ">";
+	font-size: 16px;
+	margin-top: -px;
+	padding-right: 0.3rem;
+}
+.breadcrumb-item{
+	float: left;
+	&.active{
+		color: $text-color;
+		font-weight: bold;
+	}
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+	content: ">";
+}
+

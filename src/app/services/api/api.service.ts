@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable } from "rxjs/Rx";
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable()
@@ -17,15 +17,15 @@ export class ApiService {
     return Observable.throw(error || "Server.error");
   }
 
-  private debug(url, method, data) {
-    console.info("requesting [ "+url+" ]("+method+") with options: ", data);
+  private debug(url: string, method: string, data: any) {
+//    console.info("requesting ["+url+"]("+method+") with options: ", data);
   }
 
-  private ContentType(type: string) {
+  private ContentType(type: string): any {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': type,
-      })
+      }),
     };
     return httpOptions;
   }
@@ -49,8 +49,7 @@ export class ApiService {
 
   public deleteApi(url: string): Observable<any> {
     this.debug(url, "DELETE", null);
-		console.info("calling delete on ", url);
-    return this.http.delete(url);
+    return this.http.delete(url, this.ContentType("application/json"));
   }
 
   public fileApi(url: string): Observable<any> {

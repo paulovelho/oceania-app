@@ -1,6 +1,5 @@
 export const environment = {
-  envName: "dev",
-  production: false,
-  main_app: "http://localhost:4200/",
-	api: "http://oceania-api.localhost.com",
+	envName: "dev",
+	production: false,
+	api: "http://api.malte.localhost.com",
 };

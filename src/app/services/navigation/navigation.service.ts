@@ -1,54 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Store } from '@services/store/store.service';
-import { AppConfig } from '@app/app.config';
-
 @Injectable()
 export class NavigationService {
 
 	private pagesUrl: string = "app";
 
 	constructor(
-    private router: Router,
-		private AppConfig: AppConfig,
-		private Store: Store,
+    private router: Router
 	) { }
 
-	private replaceUrlParams(url: string, key: string, value: string): string {
-		return url.replace(new RegExp(':' + key, 'g'), value );
+	public customerNew(): void {
+		this.router.navigate([this.pagesUrl, 'customer', 'new']);
 	}
-	private buildUrl(url: string, params: any): string {
-		for(let key in params) {
-			let v = params[key];
-			url = this.replaceUrlParams(url, key, v);
-		}
-		return url;
+	public customerEdit(id: string): void {
+		this.router.navigate([this.pagesUrl, 'customer', id, 'edit']);
 	}
 
-	public getUrl(url: string, params?: any): string {
-		if(params) url = this.buildUrl(url, params);
-		return url;
+	public productNew(): void {
+		this.router.navigate([this.pagesUrl, 'product', 'new']);
 	}
-	public navigateTo(destination: string, params?: any): void {
-		this.router.navigate([...this.getUrl(destination, params).split("/")]);
-	}
-	public changeUrl(destination: string, params?: any): void {
-    window.history.replaceState({}, '', this.pagesUrl + "/" + this.getUrl(destination, params));
+	public productOpen(id: string): void {
+		this.router.navigate([this.pagesUrl, 'product', id, 'view']);
 	}
 
-
-	public goToLogin(): void {
-		let currentRoute = this.router.url;
-		this.Store.clean();
-		let queryParams = {};
-		if(!currentRoute.startsWith("/login/entrance")) {
-			queryParams = { redirect: currentRoute };
-		}
-		this.router.navigate(["login"], { queryParams });
+	public supplierNew(): void {
+		this.router.navigate([this.pagesUrl, 'supplier', 'new']);
 	}
-	public goHome(): void {
-		this.navigateTo("app");
+	public supplierOpen(id: string): void {
+		this.router.navigate([this.pagesUrl, 'supplier', id, 'view']);
 	}
 
 }

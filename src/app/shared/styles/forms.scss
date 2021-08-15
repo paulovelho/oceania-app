@@ -1,0 +1,94 @@
+label {
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+
+.label-margin {
+	margin-top: 30px;
+}
+.label-padding {
+	padding-top: 30px;
+}
+
+.input-info {
+	display: block;
+	padding-left: 10px;
+	font-family: monospace;
+	border-bottom: 1px solid $input-border-color;
+}
+
+.btn-100 {
+	width: 100%;
+}
+
+.full-btn {
+	platypus-button {
+		margin-left: 0;
+		button {
+			width: 100%;
+		}
+	}
+}
+
+hr.subsection {
+	margin-top: 25px;
+	margin-bottom: 17px;
+}
+span.hr-section {
+	position: absolute;
+	margin-top: -28px;
+	background-color: #FFF;
+	color: #AAA;
+	padding-right: 10px;
+}
+
+a.plug {
+	position: relative;
+	float: right;
+	color: #428bca !important;
+	margin-top: 10px;
+}
+
+.form-validate {
+	input, select {
+		padding-right: 2.25rem;
+		background-repeat: no-repeat;
+		background-position: center right 0.625rem;
+		background-size: 1.25rem 1.25rem;
+		&.ng-invalid {
+			border-color: $danger-color;
+			background-image: $az-form-icon-danger;
+		}
+		&.ng-valid {
+			border-color: $success-color;
+			background-image: $az-form-icon-success;
+		}
+		&.no-bg {
+			padding-right: 1rem !important;
+			background-image: none !important;
+		}
+	}
+}
+
+input[type=date].no-controls::-webkit-inner-spin-button,
+input[type=date].no-controls::-webkit-calendar-picker-indicator {
+	-webkit-appearance: none;
+	display: none;
+}
+
+platypus-button + platypus-button {
+	margin-left: 10px;
+}
+
+.ng-select .ng-select-container {
+	border-radius: 0px;
+}
+
+ui-switch {
+	margin-top: 2px;
+	display: block;
+}
+
+ngx-dropzone {
+	background-color: #DDD !important;
+}

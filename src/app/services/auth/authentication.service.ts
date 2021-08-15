@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { AuthApi } from "@app/apis/auth.api";
+import { AuthApi } from "@services/auth/auth.api";
 import { NavigationService } from '@services/navigation/navigation.service';
 import { Store } from '@services/store/store.service';
 import { Toaster } from '@services/toaster/toaster.service';
@@ -23,14 +23,14 @@ export class AuthService {
 		return this.ApiService
 			.GetToken(token)
 			.toPromise()
-			.then(data => {
+			.then((data: any) => {
 				if(data.success) return data.data;
 			});
 	}
 
 	public login(email: string, password: string): Promise<any> {
 		return this.ApiService.PostAuth({ email: email, password: password })
-			.then(result => {
+			.then((result: any) => {
 				if(result.success) {
 					this.Store.setToken(result.data.token);
 //					this.Store.setExpiration(result.data.expires);

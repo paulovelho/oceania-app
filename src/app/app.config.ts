@@ -7,8 +7,8 @@ import { environment } from '../environments/environment';
 @Injectable()
 export class AppConfig {
 
-  private envName: string = null;
-  private env: EnvironmentConfig;
+  private envName: string;
+  private env: EnvironmentConfig | any;
 
 	config:any;
 
@@ -61,6 +61,5 @@ export class AppConfig {
 		}
 		return this.get("api") + endpoint;
 	}
-
 
 }
