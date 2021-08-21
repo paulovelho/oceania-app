@@ -22,26 +22,29 @@ export class Toaster {
 
 	public error(message: string): void {
 		this.debug("error", message);
-		this.openToast(this.toastrService.error, message, null);
+		const inserted = this.toastrService.error(message, "Error!", this.options);
+		if (inserted) {
+			this.lastInserted.push(inserted.toastId);
+		}
 	}
 	public success(message: string): void {
-		this.openToast(this.toastrService.success, message, null);
+		const inserted = this.toastrService.success(message, '', this.options);
+		if (inserted) {
+			this.lastInserted.push(inserted.toastId);
+		}
 	}
 	public exception(err: any): void {
 		this.debug("error", err);
-		this.openToast(this.toastrService.error, err, "ERRO!");
+		const inserted = this.toastrService.error(err, "Exception!", this.options);
+		if (inserted) {
+			this.lastInserted.push(inserted.toastId);
+		}
 	}
 	public warning(message: string): void {
-		this.openToast(this.toastrService.warning, message, null);
-	}
-
-	public openToast(toaster: Function, message: string, title: string | null) {
-		setTimeout(() => { // set timeout: https://github.com/angular/material2/issues/5268
-			const inserted = toaster(message, title, this.options);
-			if (inserted) {
-				this.lastInserted.push(inserted.toastId);
-			}
-		});
+		const inserted = this.toastrService.warning(message, '', this.options);
+		if (inserted) {
+			this.lastInserted.push(inserted.toastId);
+		}
 	}
 
   public clearToasts() {

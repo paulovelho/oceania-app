@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, ElementRef, HostListener } from '@angular/core';
 import { Router, ActivatedRoute , NavigationEnd } from '@angular/router';
+import * as jQuery from 'jquery';
 import { MenuService } from './menu.service';
 import { AppState } from '@app/app.state';
 

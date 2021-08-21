@@ -1,9 +1,7 @@
 import { NgModule, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-// import { MatAutocompleteModule, MatInputModule } from '@angular/material';
 import { NgxMaskModule } from 'ngx-mask'
 import { ToastrModule } from 'ngx-toastr';
 
@@ -33,9 +31,8 @@ import { CurrencyInputComponent } from './shared/components/forms/currency-input
 @NgModule({
 	imports: [
 		CommonModule,
-		FormsModule,
-		ReactiveFormsModule,
 		RouterModule,
+
 		NgxMaskModule.forRoot({}),
 		ToastrModule.forRoot(),
 	],

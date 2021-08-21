@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from "rxjs";
-import { timeout } from 'rxjs/operators';
+import { catchError, map, timeout } from 'rxjs/operators';
 
 import { ApiManager } from './api-manager.service';
 import { Store } from '@services/store/store.service';
@@ -17,7 +17,7 @@ export class ApiInterceptor implements HttpInterceptor {
 	){ }
 
 	private SetHeaders(req: HttpRequest<any>): HttpRequest<any> {
-		let headers = {};
+		let headers: any = {};
 		let token = this.Store.getToken();
 		if(token != null)
 			headers["Authorization"] = "Bearer " + token;
@@ -47,7 +47,7 @@ export class ApiInterceptor implements HttpInterceptor {
 		let request = this.SetHeaders(req);
 		return next.handle(request)
 			.pipe(timeout(this.timeout))
-			.map((ev) => this.GetResponse(ev))
-			.catch((err) => this.CatchError(err));
+			.pipe(map((ev) => this.GetResponse(ev)))
+			.pipe(catchError((err) => this.CatchError(err)));
 	}
 }

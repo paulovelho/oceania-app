@@ -15,7 +15,7 @@ export class ErrorHandler {
 		private Toaster: Toaster
 	) {}
 
-	public ErrorCodeManager(code, data): void {
+	public ErrorCodeManager(code: number, data: any): void {
 		switch (code) {
 			case 0:
 				this.Toaster.error(data.message);

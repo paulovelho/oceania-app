@@ -2,33 +2,19 @@ export const menuItems = [
 
 
 	{
-		title: 'Clientes',
-		routerLink: 'customers',
-		icon: 'fa-users',
+		title: 'Home',
+		routerLink: 'home',
+		icon: 'fa-home',
 		selected: false,
 		expanded: false,
-		order: 21
 	},
-
 	{
-		title: 'Produtos',
-		routerLink: 'products',
-		icon: 'fa-beer',
+		title: 'Projects',
+		routerLink: 'projects',
+		icon: 'fa-rocket',
 		selected: false,
 		expanded: false,
-		order: 21
 	},
-
-	{
-		title: 'Fornecedores',
-		routerLink: 'suppliers',
-		icon: 'fa-industry',
-		selected: false,
-		expanded: false,
-		order: 22
-	},
-
-
 
 
 	{
@@ -38,23 +24,13 @@ export const menuItems = [
 		selected: false,
 		expanded: false,
 		subMenu: false,
-		order: 90
 	},
 	{
-		title: 'Arquivos',
-		routerLink: 'files',
-		icon: 'fa-file',
-		selected: false,
-		expanded: false,
-		order: 91
-	},
-	{
-		title: 'Usuários',
+		title: 'Users',
 		routerLink: 'users',
 		icon: 'fa-id-badge',
 		selected: false,
 		expanded: false,
-		order: 92
 	},
 
 

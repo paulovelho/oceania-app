@@ -28,7 +28,7 @@ export class StatusComponent implements OnChanges {
 		if(this.text) this.txt = this.text;
 		else {
 			if(this.status == undefined || this.status == null) this.txt = "Inválido";
-			else this.txt = (this.status ==  true) ? "Ativo" : "Inativo";
+			else this.txt = (this.status ==  true) ? "Active" : "Inactive";
 		}
 		if(this.showText == true) this.caption = this.txt; else this.caption = "";
 	}

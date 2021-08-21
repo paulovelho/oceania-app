@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpResponse } from '@angular/common/http';
 
-import { Observable } from "rxjs/Rx";
+import { Observable } from "rxjs";
 import { map } from 'rxjs/operators';
 
 import { ErrorHandler } from '@services/error-handler/error-handler.service';
@@ -15,7 +15,7 @@ export class ApiManager {
 		private Toaster: Toaster,
 	) {}
 
-	private ErrorCodeManager(code, data) {
+	private ErrorCodeManager(code: number, data: any) {
 		return this.ErrorHandler.ErrorCodeManager(code, data);
 	}
 

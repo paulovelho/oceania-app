@@ -50,7 +50,7 @@ export class Store {
     let user = this.getLoggedUser();
     let token = this.getToken();
     if(!user || !token) return false;
-    return(user.email != null);
+    return (user.email != null);
   }
 
   public clean(): void {

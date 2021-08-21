@@ -1,0 +1,48 @@
+<div class="row">
+	<div class="col-12 bottom-30">
+		<div widget class="card">
+			<div class="card-header">
+				<span class="title">
+					<i class="fa fa-rocket"></i>
+					Projects
+				</span>
+				<div class="widget-controls">
+					<a class="transition" title="Adicionar" (click)="create();">
+						<i class="fa fa-plus-circle"></i>
+					</a>
+					<a class="transition" title="Atualizar" (click)="reload();">
+						<i class="fa fa-sync-alt"></i>
+					</a>
+				</div>
+			</div>
+
+			<div class="card-body widget-body">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Active</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let item of list">
+							<td class="cellClick" (click)="openItem(item)">
+								{{ item.name }}
+							</td>
+							<td>
+								<status [status]="item.active" showText="false"></status>
+							</td>
+							<td>
+								<a (click)="openItem(item);"><i class="fa fa-edit"></i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<app-loading [hidden]="!loading"></app-loading>
+			</div>
+		</div>
+	</div>
+
+</div>

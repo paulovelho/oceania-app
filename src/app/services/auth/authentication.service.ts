@@ -33,7 +33,7 @@ export class AuthService {
 			.then((result: any) => {
 				if(result.success) {
 					this.Store.setToken(result.data.token);
-//					this.Store.setExpiration(result.data.expires);
+					this.Store.setLoggedUser(result.data.user);
 				}
 				return result;
 			});
