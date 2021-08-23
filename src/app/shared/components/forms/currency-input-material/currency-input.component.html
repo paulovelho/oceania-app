@@ -1,0 +1,18 @@
+	<div class="input-group"> 
+		<div class="input-group-prepend">
+			<span class="input-group-text">{{ symbol }}</span>
+		</div>
+		<div class="input">
+			<mat-form-field floatLabel="auto">
+				<input 
+					matInput type="text" 
+					moneyMask 
+					placeholder="{{ label }}"
+					name="{{ id }}" 
+					class="form-control"
+					id="{{ id }}"
+					[(ngModel)]="value"
+					(ngModelChange)="valueChange.emit(value)" />
+			</mat-form-field>
+		</div>
+	</div>

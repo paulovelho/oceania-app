@@ -26,6 +26,13 @@ export const menuItems = [
 		subMenu: false,
 	},
 	{
+		title: 'Activities',
+		routerLink: 'activities',
+		icon: 'fa-toolbox',
+		selected: false,
+		expanded: false,
+	},
+	{
 		title: 'Users',
 		routerLink: 'users',
 		icon: 'fa-id-badge',

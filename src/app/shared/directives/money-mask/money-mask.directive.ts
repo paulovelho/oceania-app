@@ -24,14 +24,14 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 *     formatted we surround the value with parenthesis. So on input -300.12 will display as ($300.12).
 */
 @Directive({
-	selector: '[money-mask]',
+	selector: '[moneyMask]',
 	providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
 export class MoneyMaskDirective implements ControlValueAccessor {
 
 	private prefix: string = '';
-	private decimalSeparator: string = ',';
-	private thousandsSeparator: string = '.';
+	private decimalSeparator: string = '.';
+	private thousandsSeparator: string = ',';
 
 	private el: HTMLInputElement;
 	// Keeps track of the value without formatting
@@ -168,7 +168,7 @@ export class MoneyMaskDirective implements ControlValueAccessor {
 	}
 
 	parse(value: string, allowNegative = false) {
-		value = value.replace('.', '').replace(',', '.');
+		value = value.replace(this.thousandsSeparator, '').replace(this.decimalSeparator, '.');
 		let [integer, fraction = ''] = (value || '').split(this.decimalSeparator);
 		integer = integer.replace(new RegExp(/[^\d\.]/, 'g'), '');
 		fraction = parseInt(fraction, 10) > 0 && 2 > 0 ? this.decimalSeparator + (fraction + '000000').substring(0, 2) : '';

@@ -4,6 +4,6 @@ import {Pipe, PipeTransform} from '@angular/core';
 export class AppPicturePipe implements PipeTransform {
 
   transform(input:string):string {
-    return '../assets/img/' + input;
+    return '../assets/images/' + input;
   }
 }

@@ -7,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class CurrencyProxyPipe implements PipeTransform {
   currencyPipe = new CurrencyPipe('pt-Br')
 
-  transform(value, code='BRL', display='symbol',digites='0.3-5',local='pt-BR') {
+  transform(value: number, code='BRL', display='symbol',digites='0.3-5',local='pt-BR') {
      return this.currencyPipe.transform(value,code,display,digites,local)
   }
 

@@ -20,12 +20,16 @@ const routes: Routes = [
 				pathMatch: 'full'
 			},
 			{
+				path: 'activities',
+				loadChildren: () => import('./features/activities/activities.module').then(m => m.ActivitiesModule),				
+			},
+			{
 				path: 'home',
-				loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule)
+				loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule),
 			},
 			{
 				path: 'projects',
-				loadChildren: () => import('./features/projects/projects.module').then(m => m.ProjectsModule)
+				loadChildren: () => import('./features/projects/projects.module').then(m => m.ProjectsModule),
 			}
 		],
 	},

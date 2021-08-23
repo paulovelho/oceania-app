@@ -17,7 +17,6 @@ import { ProjectsHomeComponent } from './projects-home/projects-home.component';
 import { ProjectsApi } from './projects.api';
 import { ProjectsService } from './projects.service';
 
-
 @NgModule({
 	imports: [
 		CommonModule,

@@ -1,37 +1,40 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { ProjectsService } from '../projects.service';
+import { ActivitiesService } from '../activities.service';
+
 import { Toaster } from '@services/toaster/toaster.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-	selector: 'app-project-form',
-	templateUrl: './project-form.component.html',
-	styleUrls: ['./project-form.component.scss']
+	selector: 'app-activities-form',
+	templateUrl: './activities-form.component.html',
+	styleUrls: ['./activities-form.component.scss']
 })
-export class ProjectFormComponent implements OnInit {
+export class ActivitiesFormComponent implements OnInit {
 
 	@Input() modal: boolean = true;
-	@Input() project: any = { active: true };
+	@Input() activity: any = { hour: true };
 
-	public title: string = "New Project";
+	public title: string = "New Activity";
 	public loading: boolean = false;
 
 	constructor(
 		private activeModal: NgbActiveModal,
 		private Toaster: Toaster,
-		private Service: ProjectsService,
+		private Service: ActivitiesService,
 	) { }
 
 	ngOnInit(): void {
-		if (this.project.id) {
-			this.title = "Edit Project";
+		if (this.activity.id) {
+			this.title = "Edit Activity";
+			this.activity.hour = this.activity.fixed == 0;
 		}
 	}
 
 	public async save() {
 		this.loading = true;
-		this.Service.save(this.project)
+		this.activity.fixed = this.activity.hour ? 0 : 1;
+		this.Service.save(this.activity)
 			.then(rs => {
 				this.loading = false;
 				if (rs.success) {

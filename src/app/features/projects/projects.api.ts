@@ -11,7 +11,6 @@ export class ProjectsApi extends BaseApi {
 	) {
 		super(injector);
 		this.base = this.Config.get("api");
-		console.info('products base ', this.base);
 	}
 
 

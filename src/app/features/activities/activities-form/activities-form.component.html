@@ -3,7 +3,7 @@
 		<div widget class="card">
 			<div class="card-header">
 				<span class="title">
-					<i class="fa fa-rocket"></i>
+					<i class="fa fa-toolbox"></i>
 					{{ title }}
 				</span>
 				<div class="widget-controls">
@@ -15,18 +15,16 @@
 
 			<div class="card-body widget-body">
 				<div class="row">
-					<div class="col-sm-9">
-						<mat-form-field floatLabel="auto">
-							<input matInput placeholder="Name" name="name" type="text" class="form-control" id="item-name" [(ngModel)]="project.name" />
-						</mat-form-field>
-					</div>
-					<div class="col-sm-3 label-small-margin">
-						<mat-checkbox [(ngModel)]="project.active" value="true">Active</mat-checkbox>
-					</div>
 					<div class="col-sm-12">
 						<mat-form-field floatLabel="auto">
-							<input matInput placeholder="Description" type="text" class="form-control" id="item-desc" [(ngModel)]="project.short_desc" />
+							<input matInput placeholder="Name" name="name" type="text" class="form-control" id="item-name" [(ngModel)]="activity.name" />
 						</mat-form-field>
+					</div>
+					<div class="col-sm-6">
+						<currency-input label="Value" [(value)]="activity.value" id="value"></currency-input>
+					</div>
+					<div class="col-sm-6 label-small-margin">
+						<mat-checkbox [(ngModel)]="activity.hour" value="false">/ hour</mat-checkbox>
 					</div>
 					<div class="col-sm-12">
 						<platypus-button type="save" class="btn-100" (action)="save();"></platypus-button>

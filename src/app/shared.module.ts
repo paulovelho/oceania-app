@@ -1,6 +1,11 @@
 import { NgModule, forwardRef } from '@angular/core';
+import { FormsModule } from '@angular/forms'; 
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 import { NgxMaskModule } from 'ngx-mask'
 import { ToastrModule } from 'ngx-toastr';
@@ -18,6 +23,9 @@ import { Toaster } from '@services/toaster/toaster.service';
 import { Widget } from './shared/directives/widget/widget.directive';
 import { MoneyMaskDirective } from './shared/directives/money-mask/money-mask.directive';
 
+// pipes:
+import { CurrencyProxyPipe } from './shared/pipes/currency.pipe';
+
 // components:
 import { MenuComponent } from './shared/components/menu/menu.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
@@ -25,13 +33,18 @@ import { PlatypusLoaderComponent } from './shared/components/platypus-loader/pla
 import { StatusComponent } from './shared/components/status/status.component';
 
 // form components:
-import { ButtonComponent } from './shared/components/forms/button/button.component';
-import { CurrencyInputComponent } from './shared/components/forms/currency-input/currency-input.component';
+import { ButtonComponent } from './shared/components/forms/button-material/button.component';
+import { CurrencyInputComponent } from './shared/components/forms/currency-input-material/currency-input.component';
 
 @NgModule({
 	imports: [
 		CommonModule,
+		FormsModule,
 		RouterModule,
+
+		MatFormFieldModule,
+		MatButtonModule,
+		MatInputModule,
 
 		NgxMaskModule.forRoot({}),
 		ToastrModule.forRoot(),
@@ -39,6 +52,8 @@ import { CurrencyInputComponent } from './shared/components/forms/currency-input
 	declarations: [
 		Widget,
 		MoneyMaskDirective,
+
+		CurrencyProxyPipe,
 
 		MenuComponent,
 		NavbarComponent,

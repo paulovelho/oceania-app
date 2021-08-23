@@ -3,16 +3,16 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Toaster } from '@services/toaster/toaster.service';
 import { NavigationService } from '@services/navigation/navigation.service';
-import { ProjectsService } from '../projects.service';
+import { ActivitiesService } from '../activities.service';
 
-import { ProjectFormComponent } from '../project-form/project-form.component';
+import { ActivitiesFormComponent } from '../activities-form/activities-form.component';
 
 @Component({
-	selector: 'app-project-list',
-	templateUrl: './project-list.component.html',
-	styleUrls: ['./project-list.component.scss']
+	selector: 'app-activities-list',
+	templateUrl: './activities-list.component.html',
+	styleUrls: ['./activities-list.component.scss']
 })
-export class ProjectListComponent implements OnInit {
+export class ActivitiesListComponent implements OnInit {
 
 	public list: Array<any> = [];
 	public loading: boolean = true;
@@ -22,12 +22,11 @@ export class ProjectListComponent implements OnInit {
 		private Modal: NgbModal,
 		private Navigation: NavigationService,
 		private Toaster: Toaster,
-		private Service: ProjectsService,
-	){
+		private Service: ActivitiesService,
+	) {
 		this.subscription = this.Service
 			.onRefresh
 			.subscribe((data: any) => {
-				console.info('got', data);
 				this.loading = false;
 				this.list = data;
 			});
@@ -36,9 +35,9 @@ export class ProjectListComponent implements OnInit {
 	ngOnInit(): void {
 		this.LoadList();
 	}
-	ngOnDestroy() {
+	ngOnDestroy(): void {
 		if(!this.subscription) return;
-		this.subscription.unsubscribe();
+		this.subscription.unsubscribe();		
 	}
 
 	private LoadList(): void {
@@ -52,16 +51,16 @@ export class ProjectListComponent implements OnInit {
 
 	public create() {
 		this.Modal
-			.open(ProjectFormComponent)
+			.open(ActivitiesFormComponent)
 			.result
 			.then((data) => {
 				this.reload();
 			});
 	}
 
-	public openItem(p: any) {
-		let modalRef = this.Modal.open(ProjectFormComponent);
-		modalRef.componentInstance.project = p;
+	public openItem(m: any) {
+		let modalRef = this.Modal.open(ActivitiesFormComponent);
+		modalRef.componentInstance.activity = m;
 	}
 
 }

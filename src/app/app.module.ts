@@ -31,6 +31,7 @@ import { SharedModule } from './shared.module';
 import { MainComponent } from './shared/layout/main.component';
 import { LoginModule } from './features/login/login.module';
 
+import { ActivitiesModule } from './features/activities/activities.module';
 import { ProjectsModule } from './features/projects/projects.module';
 
 @NgModule({
@@ -54,6 +55,7 @@ import { ProjectsModule } from './features/projects/projects.module';
 		NgbModule,
 
 		SharedModule,
+		ActivitiesModule,
 		LoginModule,
 		ProjectsModule,
 	],
