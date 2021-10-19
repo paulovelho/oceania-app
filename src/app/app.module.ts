@@ -27,6 +27,9 @@ import { ApiInterceptor } from './services/api/api.interceptor';
 import { ApiDelayerInterceptor } from './services/api/delayer.interceptor';
 import { ErrorHandler } from './services/error-handler/error-handler.service';
 
+import { TasksApi } from './features/tasks/tasks.api';
+
+
 import { SharedModule } from './shared.module';
 import { MainComponent } from './shared/layout/main.component';
 import { LoginModule } from './features/login/login.module';
@@ -80,6 +83,8 @@ import { ProjectsModule } from './features/projects/projects.module';
 			useClass: ApiDelayerInterceptor,
 			multi: true,
 		},
+
+		TasksApi,
 	],
 	schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 	bootstrap: [ AppComponent ]

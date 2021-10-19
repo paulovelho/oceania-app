@@ -46,6 +46,11 @@ export class ButtonComponent implements OnInit {
 				this.icon = 'fa-plus-square';
 				this.btclass.push('btn-outline-primary');
 				break;
+			case "refresh":
+				this.caption = '';
+				this.icon = 'fa-sync';
+				this.btclass.push('btn-outline-primary');
+				break;
 			case "search":
 				this.caption = 'Buscar';
 				this.icon = 'fa-search';

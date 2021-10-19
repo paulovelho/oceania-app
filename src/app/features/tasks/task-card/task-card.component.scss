@@ -1,0 +1,48 @@
+.task-card {
+
+	border: 1px solid #EEE;
+
+	.project-name {
+		font-size: 14px;
+		font-weight: bold;
+		border-bottom: 1px solid #555;
+		width: 100%;
+		display: block;
+	}
+
+	.activity {
+		color: #000;
+		border: 1px solid #000;
+		padding: 2px 7px;
+		border-radius: 3px;
+		box-shadow: 1px 1px 2px #AAA;
+
+		&.activity-2 { // bonus
+			background-color: #faeb66;
+		}
+		&.activity-4, &.activity-5 { // dev, dev external
+			background-color: #808cbf;
+		}
+		&.activity-10 { // unpaid
+			border-color: #DDD;
+		}
+		&.activity-11 { // writing
+			background-color: #7aba72;
+		}
+		&.activity-13 { // event
+			background-color: #444;
+			color: #FFF;
+		}
+	}
+
+	.hours {
+		width: 100%;
+		display: block;
+		text-align: right;
+		font-size: 12px;
+		color: #555;
+		padding-bottom: 5px;
+		padding-right: 10px; 
+	}
+
+}

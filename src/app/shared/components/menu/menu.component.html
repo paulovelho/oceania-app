@@ -1,3 +1,10 @@
+<nav class="nav az-navbar fixed-top">
+	<a class="navbar-brand" routerLink="/">
+		<img src="assets/images/nav_logo.png" alt="" class="d-md-none"> 
+	</a>
+	<div id="lines" class="transition" (click)="toggleMenu()"></div>
+</nav>
+
 <div class="sidebar" [ngClass]="{'menu-collapsed': isMenuCollapsed}" (mouseleave)="hoverElemTop=-200">
 	<ul class="nav nav-sidebar flex-column" perfectScrollbar>
 		<li *ngFor="let item of menuItems" class="sidebar-list-item">

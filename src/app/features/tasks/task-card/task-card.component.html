@@ -1,0 +1,16 @@
+<mat-card class="task-card">
+	<mat-card-title>
+		<span class="project-name">{{ task.project_name }}</span>
+	</mat-card-title>
+	<mat-card-subtitle>
+		<span class="activity activity-{{ task.activity_id }}">{{ task.activity?.name }}</span>
+	</mat-card-subtitle>
+	<mat-card-content>
+		<p class="task-desc">{{ task.task }}</p>
+	</mat-card-content>
+	<mat-card-footer>
+		<span class="hours">
+			{{ task.hours_spent }} of {{ task.hours_estimation }} hours
+		</span>
+	</mat-card-footer>
+</mat-card>

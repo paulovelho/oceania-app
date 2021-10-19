@@ -1,0 +1,24 @@
+<div widget class="card task-list">
+	<div class="card-header">
+		<span class="title">
+			<i class="fa fa-{{statusIcon}}"></i>
+			{{ status.name | uppercase }}
+		</span>
+		<div class="widget-controls">
+			<a *ngIf="showAdd" class="transition" title="Adicionar" (click)="create();">
+				<i class="fa fa-plus-circle"></i>
+			</a>
+		</div>
+	</div>
+
+	<div class="card-body widget-body">
+		<div class="row">
+			<div class="col-sm-12 task-list">
+				<div class="task-item" *ngFor="let t of tasks">
+					<app-task-card class="task-card" [task]="t"></app-task-card>
+				</div>
+				<br/>
+			</div>
+		</div>
+	</div>
+</div>

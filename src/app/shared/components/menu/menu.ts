@@ -15,6 +15,13 @@ export const menuItems = [
 		selected: false,
 		expanded: false,
 	},
+	{
+		title: 'Tasks',
+		routerLink: 'tasks',
+		icon: 'fa-tasks',
+		selected: false,
+		expanded: false,
+	},
 
 
 	{
@@ -32,6 +39,7 @@ export const menuItems = [
 		selected: false,
 		expanded: false,
 	},
+/*
 	{
 		title: 'Users',
 		routerLink: 'users',
@@ -39,7 +47,7 @@ export const menuItems = [
 		selected: false,
 		expanded: false,
 	},
-
+*/
 
 
 
