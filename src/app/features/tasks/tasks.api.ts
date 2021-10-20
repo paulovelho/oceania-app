@@ -38,4 +38,9 @@ export class TasksApi extends BaseApi {
 		return this.get(url).toPromise();
 	}
 
+	public UpdateStatus(task: number, status: number): Promise<any> {
+		let url = this.url('/task/:task/move-to/:status').params({ task, status });
+		return this.post(url, null).toPromise();
+	}
+
 }

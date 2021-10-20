@@ -1,6 +1,9 @@
 <mat-card class="task-card">
 	<mat-card-title>
 		<span class="project-name">{{ task.project_name }}</span>
+		<div *ngIf="task.loading" class="loading">
+			<app-loading extraClass="small"></app-loading>
+		</div>
 	</mat-card-title>
 	<mat-card-subtitle>
 		<span class="activity activity-{{ task.activity_id }}">{{ task.activity?.name }}</span>

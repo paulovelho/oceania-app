@@ -1,9 +1,10 @@
 <div widget class="card task-list">
 	<div class="card-header">
-		<span class="title">
+		<span class="title" *ngIf="!loading">
 			<i class="fa fa-{{statusIcon}}"></i>
 			{{ status.name | uppercase }}
 		</span>
+		<app-loading *ngIf="loading" extraClass="small white"></app-loading>
 		<div class="widget-controls">
 			<a *ngIf="showAdd" class="transition" title="Adicionar" (click)="create();">
 				<i class="fa fa-plus-circle"></i>
@@ -11,11 +12,23 @@
 		</div>
 	</div>
 
-	<div class="card-body widget-body">
+	<div 
+		cdkDropList
+		id="list-{{ status.id }}"
+		class="card-body widget-body"
+		[cdkDropListData]="status"
+		[cdkDropListConnectedTo]="allLists"
+		(cdkDropListDropped)="drop($event)"
+	>
 		<div class="row">
 			<div class="col-sm-12 task-list">
 				<div class="task-item" *ngFor="let t of tasks">
-					<app-task-card class="task-card" [task]="t"></app-task-card>
+					<app-task-card
+						cdkDrag
+						class="task-card"
+						[task]="t"
+						[cdkDragData]="t"
+					></app-task-card>
 				</div>
 				<br/>
 			</div>

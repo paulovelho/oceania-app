@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -53,6 +54,7 @@ import { ProjectsModule } from './features/projects/projects.module';
 		MatButtonModule,
 		MatDatepickerModule,
 		MatNativeDateModule,
+		DragDropModule,
 
 		AppRoutingModule,
 		NgbModule,

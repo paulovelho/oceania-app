@@ -1,7 +1,8 @@
 <div class="dashboard">
 	<div class="row">
 		<div class="col-sm-5 actions">
-			<div *ngIf="projectsSelect.length > 0" class="filter-select">
+			<app-loading *ngIf="!projectsSelect" extraClass="small"></app-loading>
+			<div *ngIf="projectsSelect?.length > 0" class="filter-select">
 				<mat-form-field appearance="fill">
 					<mat-label>Project</mat-label>
 					<mat-select
@@ -17,7 +18,8 @@
 			</div>
 		</div>
 		<div class="col-sm-5 actions">
-			<div *ngIf="activitiesSelect.length > 0" class="filter-select">
+			<app-loading *ngIf="!activitiesSelect" extraClass="small"></app-loading>
+			<div *ngIf="activitiesSelect?.length > 0" class="filter-select">
 				<mat-form-field appearance="fill">
 					<mat-label>Activity</mat-label>
 					<mat-select
@@ -43,23 +45,32 @@
 		<div class="col-md-4">
 			<app-task-list
 				statusIcon="list-alt"
+				[loading]="loading"
+				[allLists]="allLists"
+				(taskChange)="moveTaskAround($event)"
 				[status]="status['todo']"
-				[tasks]="todo"
+				[tasks]="trello[status['todo'].id]"
 				[showAdd]="true"
 			></app-task-list>
 		</div>
 		<div class="col-md-4">
 			<app-task-list
 				statusIcon="hammer"
+				[loading]="loading"
+				[allLists]="allLists"
+				(taskChange)="moveTaskAround($event)"
 				[status]="status['wip']"
-				[tasks]="wip"
+				[tasks]="trello[status['wip'].id]"
 			></app-task-list>
 		</div>
 		<div class="col-md-4">
 			<app-task-list
 				statusIcon="check-circle"
+				[loading]="loading"
+				[allLists]="allLists"
+				(taskChange)="moveTaskAround($event)"
 				[status]="status['done']"
-				[tasks]="done"
+				[tasks]="trello[status['done'].id]"
 			></app-task-list>
 		</div>
 	</div>

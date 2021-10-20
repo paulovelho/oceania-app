@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { SharedModule } from '@app/shared.module';
 
@@ -29,6 +30,7 @@ import { TaskCardComponent } from './task-card/task-card.component';
 		MatCardModule,
 		MatInputModule,
 		MatSelectModule,
+		DragDropModule,
 		
 		TasksRoutingModule,
 		SharedModule,

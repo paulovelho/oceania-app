@@ -12,18 +12,22 @@ import Status from '@app/status-list';
 })
 export class TasksDashboardComponent implements OnInit {
 
+	public status: any = Status;
+
 	public allTasks: any[] = [];
 	public tasks: any[] = [];
-	public loading: boolean = true;
 	public subscription: any;
 
+	public loading: boolean = true;
+
+	public trello: any = [];
 	public todo: any[] = [];
 	public wip: any[] = [];
 	public done: any[] = [];
+	public allLists: any[] = [];
 
-	public status: any = Status;
-	public activitiesSelect: any[] = [];
-	public projectsSelect: any[] = [];
+	public activitiesSelect: any[] | null = null;
+	public projectsSelect: any[] | null = null;
 	public project_id: any = null;
 	public activity_id: any = null;
 
@@ -47,24 +51,46 @@ export class TasksDashboardComponent implements OnInit {
 	}
 
 	public filterTasks(): void {
+		this.loading = true;
 		this.tasks = this.allTasks;
 		if (this.project_id) {
-			console.info('filtering proj ', this.project_id);
 			this.tasks = this.tasks.filter(t => t.project_id == this.project_id);
 		}
 		if (this.activity_id) {
 			this.tasks = this.tasks.filter(a => a.activity_id == this.activity_id);
 		}
-		console.info('filtered tasks ', this.tasks);
 		this.taskStatus();
 	}
+	private getTasksWithId(id: number) {
+		this.trello[id] = this.tasks.filter(t => t.status_id == id);
+		this.allLists.push('list-'+id);
+	}
 	private taskStatus(): void {
-		this.todo = this.tasks.filter(t => t.status_id == this.status['todo'].id);
-		this.wip = this.tasks.filter(t => t.status_id == this.status['wip'].id);
-		this.done = this.tasks.filter(t => t.status_id == this.status['done'].id);
+		this.allLists = [];
+		this.getTasksWithId(this.status['todo'].id);
+		this.getTasksWithId(this.status['wip'].id);
+		this.getTasksWithId(this.status['done'].id);
+		this.loading = false;
+	}
+
+	public moveTaskAround(data: any) {
+		const fromStatus = data.from;
+		const toStatus = data.to;
+		let task = data.task;
+		task.loading = true;
+		// remove from one list:
+		this.trello[fromStatus.id] = this.trello[fromStatus.id].filter((t: any) => t.id != task.id);
+		// and another to other:
+		this.trello[toStatus.id].push(task);
+		this.Service.changeStatus(task.id, toStatus.id)
+			.then(data => {
+				console.info('ok!');
+				task.loading = false;
+			});
 	}
 
 	public refresh(): void {
+		this.loading = true;
 		this.Service.refreshTasks();
 	}
 

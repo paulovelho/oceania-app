@@ -81,6 +81,14 @@ export class TasksService {
 			});
 	}
 
+	public changeStatus(task_id: number, status_id: number): Promise<any> {
+		return this.ApiService
+			.UpdateStatus(task_id, status_id)
+			.then(rs => {
+				return rs;
+			});
+	}
+
 	public async loadStatus() {
 		if(this.status.length > 0) return this.status;
 		this.status = [];
