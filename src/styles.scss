@@ -96,3 +96,8 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+// for mat-select inside modals:
+.cdk-global-overlay-wrapper, .cdk-overlay-container { z-index: 70000 !important; } 
+

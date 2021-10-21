@@ -9,6 +9,8 @@ import { Toaster } from '@services/toaster/toaster.service';
 })
 export class ActivitiesService {
 
+	private activities: any[] = [];
+
 	constructor(
 		private ApiService: ActivitiesApi,
 	) { }
@@ -22,13 +24,31 @@ export class ActivitiesService {
 			});
 	}
 
-	public getAll(): Promise<any> {
+	public setActivitiesList(acts: any[]): any[] {
+		this.activities = [];
+		acts.map(act => this.activities[act.id] = {
+			id: act.id,
+			name: act.name,
+			value: act.value,
+			fixed: act.fixed == 1,
+		});
+		return this.activities;
+	}
+	public async getAllList(): Promise<any> {
+		if (this.activities.length > 0) return this.activities;
+		let acts = await this.getAll();
+		return this.setActivitiesList(acts);
+	}
+
+	public async getAll(): Promise<any> {
 		return this.ApiService
 			.GetAll()
 			.toPromise()
 			.then(rs => {
-				console.info('got: ', rs);
-				if(rs.success) return rs.data;
+				if(rs.success) {
+					this.activities = rs.data;
+					return rs.data;
+				}
 			});
 	}
 
@@ -45,6 +65,7 @@ export class ActivitiesService {
 			.Create(data)
 			.toPromise()
 			.then(rs => {
+				this.activities = [];
 				this.refreshList();
 				return rs;
 			});
@@ -57,6 +78,7 @@ export class ActivitiesService {
 			.Update(id, data)
 			.toPromise()
 			.then(rs => {
+				this.activities = [];
 				this.refreshList();
 				return rs;
 			});

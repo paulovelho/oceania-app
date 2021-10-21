@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,9 @@ import { ApiManager } from './services/api/api-manager.service';
 import { ApiInterceptor } from './services/api/api.interceptor';
 import { ApiDelayerInterceptor } from './services/api/delayer.interceptor';
 import { ErrorHandler } from './services/error-handler/error-handler.service';
+
+import { TasksApi } from './features/tasks/tasks.api';
+
 
 import { SharedModule } from './shared.module';
 import { MainComponent } from './shared/layout/main.component';
@@ -50,6 +54,7 @@ import { ProjectsModule } from './features/projects/projects.module';
 		MatButtonModule,
 		MatDatepickerModule,
 		MatNativeDateModule,
+		DragDropModule,
 
 		AppRoutingModule,
 		NgbModule,
@@ -80,6 +85,8 @@ import { ProjectsModule } from './features/projects/projects.module';
 			useClass: ApiDelayerInterceptor,
 			multi: true,
 		},
+
+		TasksApi,
 	],
 	schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 	bootstrap: [ AppComponent ]

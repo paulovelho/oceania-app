@@ -9,6 +9,8 @@ import { Toaster } from '@services/toaster/toaster.service';
 })
 export class ProjectsService {
 
+	public projects: any[] = [];
+
 	constructor(
 		private ApiService: ProjectsApi,
 	) { }
@@ -18,12 +20,26 @@ export class ProjectsService {
 	public refreshList() {
 		this.getAll()
 			.then(data => {
-				console.info('refresh list', data);
+				this.setProjectList(data);
 				this.onRefresh.next(data);
 			});
 	}
 
-	public getAll(): Promise<any> {
+	public setProjectList(ps: any[]): any[] {
+		this.projects = [];
+		ps.map(p => this.projects[p.id] = {
+			id: p.id,
+			name: p.name,
+		});
+		return this.projects;
+	}
+	public async getProjectList(): Promise<any> {
+		if(this.projects.length > 0) return this.projects;
+		let projs = await this.getAll();
+		return this.setProjectList(projs);
+	}
+
+	public async getAll(): Promise<any> {
 		return this.ApiService
 			.GetProjects()
 			.toPromise()

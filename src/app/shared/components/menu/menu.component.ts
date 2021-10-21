@@ -21,6 +21,8 @@ export class MenuComponent implements OnInit {
 	public hoverElemHeight: number = 0;
 	public hoverElemTop: number = 0;
 
+	public menuTop: number = 0;
+
 	constructor(
 		private _elementRef:ElementRef,
 		private _router:Router,
@@ -89,7 +91,7 @@ export class MenuComponent implements OnInit {
 	public hoverItem($event: any): void {
 		this.showHoverElem = true;
 		this.hoverElemHeight = $event.currentTarget.clientHeight;
-		this.hoverElemTop = $event.currentTarget.getBoundingClientRect().top - 60;
+		this.hoverElemTop = $event.currentTarget.getBoundingClientRect().top - this.menuTop;
 	}
 
 	public collapseMenu($event: any, item: any): boolean{ 
@@ -122,5 +124,11 @@ export class MenuComponent implements OnInit {
 		}
 		return false;
 	}
+
+	public toggleMenu() {
+		this.isMenuCollapsed = !this.isMenuCollapsed; 
+		this._state.emit('menu.isCollapsed', this.isMenuCollapsed);
+	}
+
 
 }

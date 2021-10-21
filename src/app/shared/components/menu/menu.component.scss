@@ -1,5 +1,5 @@
-@import "../../styles/variables";
-@import "../../styles/mixins";
+@import "variables";
+@import "mixins";
 
 .sidebar{
 	background: $sidebar-bg-color;
@@ -10,7 +10,7 @@
 	overflow: hidden;
 	display: block;
 	z-index: 9;
-	margin-top: 60px;
+	margin-top: $navbar-height;
 
 	span {
 		padding-right: 10px;

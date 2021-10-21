@@ -1,0 +1,12 @@
+.task-list {
+	height: calc(100vh - 120px);
+}
+
+.task-card {
+	margin-bottom: 10px;
+	display: block;
+}
+
+.card-body {
+	overflow-y: scroll;
+}
