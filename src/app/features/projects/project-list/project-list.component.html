@@ -33,8 +33,9 @@
 							<td>
 								<status [status]="item.active" showText="false"></status>
 							</td>
-							<td>
+							<td class="actions">
 								<a (click)="openItem(item);"><i class="fa fa-edit"></i></a>
+								<a (click)="openItem(item);"><i class="fa fa-clipboard"></i></a>
 							</td>
 						</tr>
 					</tbody>

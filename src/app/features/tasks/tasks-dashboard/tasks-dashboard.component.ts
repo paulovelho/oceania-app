@@ -39,7 +39,7 @@ export class TasksDashboardComponent implements OnInit {
 		this.subscription = this.Service
 			.tasksLoaded
 			.subscribe((data: any) => {
-				console.info('loaded tasks got response: ', data);
+//				console.info('loaded tasks got response: ', data);
 				this.allTasks = data;
 				this.filterTasks();
 			});
@@ -54,6 +54,7 @@ export class TasksDashboardComponent implements OnInit {
 		this.loading = true;
 		this.tasks = this.allTasks;
 		if (this.project_id) {
+			this.ProjectsService.storeProject({ id: this.project_id });
 			this.tasks = this.tasks.filter(t => t.project_id == this.project_id);
 		}
 		if (this.activity_id) {
@@ -102,11 +103,16 @@ export class TasksDashboardComponent implements OnInit {
 		this.ProjectsService.getProjectList()
 			.then(data => {
 				this.projectsSelect = data.filter((p: any) => p!= null);
+				this.ProjectsService.getStoredProject()
+					.then(p => {
+						this.project_id = p?.id;
+					});
 			});
 	}
 	public clearFilters(): void {
 		this.project_id = null;
 		this.activity_id = null;
+		this.ProjectsService.clearStoredProject();
 		this.filterTasks();
 	}
 

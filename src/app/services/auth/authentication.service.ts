@@ -15,7 +15,7 @@ export class AuthService {
 		private Toaster: Toaster,
 	) {}
 
-	public isAuthenticated(): boolean {
+	public isAuthenticated(): Promise<boolean> {
 		return this.Store.isLogged();
 	}
 

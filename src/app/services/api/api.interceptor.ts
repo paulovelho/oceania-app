@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpHeaders } from '@angular/common/http';
-import { Observable } from "rxjs";
-import { catchError, map, timeout } from 'rxjs/operators';
+import { Observable, from } from "rxjs";
+import { catchError, map, timeout, switchMap } from 'rxjs/operators';
 
 import { ApiManager } from './api-manager.service';
 import { Store } from '@services/store/store.service';
@@ -16,15 +16,14 @@ export class ApiInterceptor implements HttpInterceptor {
 		private Store: Store
 	){ }
 
-	private SetHeaders(req: HttpRequest<any>): HttpRequest<any> {
+	private async SetHeaders(req: HttpRequest<any>): Promise<HttpRequest<any>> {
 		let headers: any = {};
-		let token = this.Store.getToken();
-		if(token != null)
-			headers["Authorization"] = "Bearer " + token;
-//    console.info("setting headers to request: ", headers);
-
+		let token = await this.Store.getToken();
+		if(token == null) return req;
 		return req.clone({
-			setHeaders: headers
+			headers: req.headers
+				.set('Authorization', 'Bearer ' + token)
+				.append('Content-Type', 'application/json')
 		});
 	}
 
@@ -36,18 +35,31 @@ export class ApiInterceptor implements HttpInterceptor {
 	}
 
 	private CatchError(err: any) {
-		this.Manager.ErrorManager(err);
+//		this.Manager.StatusManage(err);
 		let error = err.error 
-								? err.error.data ? err.error.data : err.error
-								: err.error;
+							? err.error.data ? err.error.data : err.error
+							: err.error;
+		console.info(error);
 		return Observable.throw(error);
 	}
 
-	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-		let request = this.SetHeaders(req);
+	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
+		return from(this.SetHeaders(req))
+			.pipe(
+				switchMap(request => {
+					return next.handle(request)
+						.pipe( timeout(this.timeout) )
+						.pipe( map((ev: any) => this.GetResponse(ev)) )
+						.pipe( catchError((err: any) => this.CatchError(err)) );
+				})
+			);
+/*
+		let request = from(this.SetHeaders(req));
 		return next.handle(request)
 			.pipe(timeout(this.timeout))
 			.pipe(map((ev) => this.GetResponse(ev)))
 			.pipe(catchError((err) => this.CatchError(err)));
+*/
 	}
+
 }

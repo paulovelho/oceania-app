@@ -27,7 +27,6 @@ export class ProjectListComponent implements OnInit {
 		this.subscription = this.Service
 			.onRefresh
 			.subscribe((data: any) => {
-				console.info('got', data);
 				this.loading = false;
 				this.list = data;
 			});
