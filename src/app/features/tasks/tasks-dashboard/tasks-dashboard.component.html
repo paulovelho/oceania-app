@@ -6,11 +6,15 @@
 				<mat-form-field appearance="fill">
 					<mat-label>Project</mat-label>
 					<mat-select
-						[(ngModel)]="project_id"
+						[compareWith]="compareProjects"
+						[(ngModel)]="project"
 						(selectionChange)="filterTasks();"
 						name="project"
 					>
-						<mat-option *ngFor="let project of projectsSelect" [value]="project.id">
+						<mat-option 
+							*ngFor="let project of projectsSelect"
+							[value]="project"
+						>
 							{{ project.name }}
 						</mat-option>
 					</mat-select>
@@ -27,18 +31,28 @@
 						(selectionChange)="filterTasks();"
 						name="activity"
 					>
-						<mat-option *ngFor="let activity of activitiesSelect" [value]="activity.id">
+						<mat-option 
+							*ngFor="let activity of activitiesSelect"
+							[value]="activity.id"
+						>
 							{{ activity.name }}
 						</mat-option>
 					</mat-select>
 				</mat-form-field>
 			</div>
 		</div>
-		<div class="col-sm-1 actions">
+		<div class="col-sm-1 actions left">
 			<span class="action" (click)="clearFilters();"><i class="fa fa-window-close"></i></span>
 		</div>
 		<div class="col-sm-1 actions right">
 			<span class="action" (click)="refresh();"><i class="fa fa-sync"></i></span>
+			<span 
+				class="action"
+				(click)="addBulkTasks();"
+				*ngIf="showBulkTasks"
+			>
+				<i class="fa fa-clipboard"></i>
+			</span>
 		</div>
 	</div>
 	<div class="row">

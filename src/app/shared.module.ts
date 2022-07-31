@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { NgxMaskModule } from 'ngx-mask'
 import { ToastrModule } from 'ngx-toastr';
@@ -44,7 +46,9 @@ import { CurrencyInputComponent } from './shared/components/forms/currency-input
 
 		MatFormFieldModule,
 		MatButtonModule,
+		MatCheckboxModule,
 		MatInputModule,
+		MatSelectModule,
 
 		NgxMaskModule.forRoot({}),
 		ToastrModule.forRoot(),
@@ -76,6 +80,13 @@ import { CurrencyInputComponent } from './shared/components/forms/currency-input
 		NgxMaskModule,
 		Widget,
 		MoneyMaskDirective,
+
+		FormsModule,
+		MatFormFieldModule,
+		MatButtonModule,
+		MatCheckboxModule,
+		MatInputModule,
+		MatSelectModule,
 		
 		MenuComponent,
 		NavbarComponent,

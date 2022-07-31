@@ -6,7 +6,7 @@
 		</span>
 		<app-loading *ngIf="loading" extraClass="small white"></app-loading>
 		<div class="widget-controls">
-			<a *ngIf="showAdd" class="transition" title="Adicionar" (click)="create();">
+			<a *ngIf="showAdd && !loading" class="transition" title="Adicionar" (click)="create();">
 				<i class="fa fa-plus-circle"></i>
 			</a>
 		</div>

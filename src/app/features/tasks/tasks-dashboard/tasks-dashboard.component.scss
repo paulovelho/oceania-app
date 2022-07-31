@@ -1,5 +1,17 @@
 .actions {
 	margin-bottom: 10px;
+	&.left {
+		padding-left: 0;
+		span.action {
+			float: left;
+		}
+	}
+	&.right {
+		text-align: right;
+		span.action {
+			float: right;
+		}
+	}
 	span.action {
 		cursor: pointer;
 		margin: 5px;

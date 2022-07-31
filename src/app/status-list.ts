@@ -1,26 +1,26 @@
 const Status = {
 	'backlog': {
-		id: 6,
+		id: 1,
 		name: "Backlog"
 	},
 	'todo': {
-		id: 1,
+		id: 2,
 		name: "To Do"
 	},
 	'queue': {
-		id: 2,
+		id: 3,
 		name: "Queue"
 	},
 	'waiting': {
-		id: 3,
+		id: 4,
 		name: "Waiting"
 	},
 	'wip': {
-		id: 4,
+		id: 5,
 		name: "WIP"
 	},
 	'done': {
-		id: 5,
+		id: 6,
 		name: "Done"
 	},
 	'canceled': {
@@ -30,6 +30,10 @@ const Status = {
 	'blocked': {
 		id: 8,
 		name: "Blocked"
+	},
+	'archived': {
+		id: 9,
+		name: "archived"
 	},
 };
 

@@ -29,7 +29,20 @@
 						</mat-form-field>
 					</div>
 					<div class="col-sm-12">
-						<platypus-button type="save" class="btn-100" (action)="save();"></platypus-button>
+						<mat-form-field appearance="fill" [hidden]="loading">
+							<mat-label>Client</mat-label>
+							<mat-select
+								[(ngModel)]="project.client_id"
+								name="client"
+							>
+								<mat-option *ngFor="let client of clients" [value]="client.id">
+									{{ client.name }}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div class="col-sm-12">
+						<platypus-button type="save" class="btn-100" [hidden]="loading" (action)="save();"></platypus-button>
 					</div>
 				</div>
 

@@ -1,0 +1,36 @@
+<div class="row">
+	<div class="col-12">
+		<div widget class="card">
+			<div class="card-header">
+				<span class="title">
+					<i class="fa fa-building"></i>
+					{{ title }}
+				</span>
+				<div class="widget-controls">
+					<a *ngIf="modal" class="transition" title="Atualizar" (click)="close();">
+						<i class="fa fa-times-circle"></i>
+					</a>
+				</div>
+			</div>
+
+			<div class="card-body widget-body">
+				<div class="row">
+					<div class="col-sm-9">
+						<mat-form-field floatLabel="auto">
+							<input matInput placeholder="Name" name="name" type="text" class="form-control" id="item-name" [(ngModel)]="client.name" />
+						</mat-form-field>
+					</div>
+					<div class="col-sm-3 label-small-margin">
+						<mat-checkbox [(ngModel)]="client.active" value="true">Active</mat-checkbox>
+					</div>
+					<div class="col-sm-12">
+						<platypus-button type="save" class="btn-100" (action)="save();"></platypus-button>
+					</div>
+				</div>
+
+				<app-loading [hidden]="!loading"></app-loading>
+			</div>
+		</div>
+	</div>
+
+</div>

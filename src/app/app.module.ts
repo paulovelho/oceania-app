@@ -36,6 +36,7 @@ import { MainComponent } from './shared/layout/main.component';
 import { LoginModule } from './features/login/login.module';
 
 import { ActivitiesModule } from './features/activities/activities.module';
+import { ClientsModule } from './features/clients/clients.module';
 import { ProjectsModule } from './features/projects/projects.module';
 
 @NgModule({
@@ -62,6 +63,7 @@ import { ProjectsModule } from './features/projects/projects.module';
 		SharedModule,
 		ActivitiesModule,
 		LoginModule,
+		ClientsModule,
 		ProjectsModule,
 	],
 	declarations: [

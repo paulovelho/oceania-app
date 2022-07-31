@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 
 import { ActivitiesApi } from './activities.api';
 import { Toaster } from '@services/toaster/toaster.service';
+import { Store } from '@services/store/store.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class ActivitiesService {
 
 	constructor(
 		private ApiService: ActivitiesApi,
+		private Store: Store,
 	) { }
 
 	@Output() onRefresh = new Subject<any[]>();
@@ -84,5 +86,17 @@ export class ActivitiesService {
 			});
 	}
 
+	public storeActivity(data: any): Promise<any> {
+		return this.Store.set('main-activity', { 
+			id: data.id,
+			name: data.name || '...',
+		});
+	}
+	public getStoredActivity(): Promise<any> {
+		return this.Store.get('main-activity');
+	}
+	public clearStoredActivity(): void {
+		this.Store.remove('main-activity');
+	}
 
 }

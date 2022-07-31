@@ -65,7 +65,6 @@ export class ProjectsService {
 			.CreateProject(data)
 			.toPromise()
 			.then(rs => {
-				console.info('ApiService-create', rs);
 				this.refreshList();
 				return rs;
 			});
@@ -78,7 +77,6 @@ export class ProjectsService {
 			.UpdateProject(id, data)
 			.toPromise()
 			.then(rs => {
-				console.info('ApiService-update', rs);
 				this.refreshList();
 				return rs;
 			});

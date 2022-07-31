@@ -6,6 +6,7 @@ import { NavigationService } from '@services/navigation/navigation.service';
 import { ProjectsService } from '../projects.service';
 
 import { ProjectFormComponent } from '../project-form/project-form.component';
+import { BulkAddComponent } from '@app/features/tasks/bulk-add/bulk-add.component';
 
 @Component({
 	selector: 'app-project-list',
@@ -42,6 +43,13 @@ export class ProjectListComponent implements OnInit {
 
 	private LoadList(): void {
 		this.Service.refreshList();
+	}
+
+	public bulkAdd(project: any): void {
+		console.info('bulk add for ', project);
+		let modalRef = this.Modal.open(BulkAddComponent, { windowClass: 'modal-large' });
+		let { id, name } = project;
+		modalRef.componentInstance.project = { id, name };		
 	}
 
 	public reload() {
