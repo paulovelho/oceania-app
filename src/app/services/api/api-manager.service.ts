@@ -20,7 +20,6 @@ export class ApiManager {
 	}
 
 	public ErrorManager(err: any): void {
-		console.info(err);
 		switch (err.status) {
 			case 0:
 				this.ErrorCodeManager(0, err);
@@ -64,6 +63,10 @@ export class ApiManager {
 				let body: any = event.body;
 				if(body instanceof Blob) return;
 				this.ResponseManage(body);
+				break;
+			case 401:
+				this.Toaster.error("Chamada não autorizada!");
+				this.ErrorCodeManager(401, null)
 				break;
 		}
 	}

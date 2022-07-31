@@ -22,7 +22,6 @@ export class AppComponent implements AfterViewInit {
 	}
 	
 	ngAfterViewInit(): void {
-		console.info("loading...");
 		this.hideLoading();
 	}
 

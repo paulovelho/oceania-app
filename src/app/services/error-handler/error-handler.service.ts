@@ -23,6 +23,9 @@ export class ErrorHandler {
 			case 1001:
 				this.Toaster.error("parâmetros de busca inválidos");
 				break;
+			case 401:
+				this.redirectToLogin();
+				break;
 			case 4010: // token expired
 				console.error(data);
 				let expired = this.datePipe.transform(data.expiredAt, 'yyyy-MM-dd hh:mm:ss');
@@ -81,7 +84,6 @@ export class ErrorHandler {
 				this.Toaster.error("Erro na integração financeira: " + err.message);
 				break;
 			default:
-				console.error(err);
 				this.Toaster.error("Ocorreu um erro desconhecido!");
 				break;
 		}

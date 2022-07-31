@@ -1,0 +1,74 @@
+<div class="row bulk-modal">
+	<div class="col-12">
+		<div widget class="card">
+			<div class="card-header">
+				<span class="title">
+					<i class="fa fa-clipboard"></i>
+					Adding Tasks
+				</span>
+				<div class="widget-controls">
+					<a *ngIf="modal" class="transition" title="Atualizar" (click)="close();">
+						<i class="fa fa-times-circle"></i>
+					</a>
+				</div>
+			</div>
+
+			<div class="card-body widget-body">
+				<div class="row row-project">
+					<div class="col-sm-12">
+						{{ project?.name }}
+					</div>
+				</div>
+
+				<div class="row activity-row">
+					<div class="col-sm-12">
+						<app-loading *ngIf="!activities" extraClass="small"></app-loading>
+						<div *ngIf="activities?.length > 0" class="filter-select">
+							<mat-form-field appearance="fill">
+								<mat-label>Activity</mat-label>
+								<mat-select
+									[(ngModel)]="activity_id"
+									name="activity"
+								>
+									<mat-option *ngFor="let activity of activities" [value]="activity.id">
+										{{ activity.name }}
+									</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-12">
+						<mat-form-field>
+							<mat-label>Tasks</mat-label>
+							<textarea class="bulk-input" [(ngModel)]="tasks" matInput placeholder=""></textarea>
+						</mat-form-field>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="summary-helper-expand" [hidden]="!hideSyntax" (click)="hideSyntax = false;">
+							<i class="fa fa-chevron-right"></i> Syntax
+						</div>
+						<div class="summary-helper-content" [hidden]="hideSyntax">
+							Task A<br/>
+							- Subtask B - 5h<br/>
+							- Subtask C - 8h<br/>
+							Task D - 4h<br/>
+							Task E<br/>
+						</div>
+					</div>
+					<div class="col-sm-8">
+						<platypus-button type="save" class="btn-100" [hidden]="loading" (action)="addBulk();"></platypus-button>
+					</div>
+				</div>
+
+				<app-loading [hidden]="!loading"></app-loading>
+			</div>
+		</div>
+	</div>
+
+</div>

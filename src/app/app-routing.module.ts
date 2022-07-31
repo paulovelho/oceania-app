@@ -21,7 +21,11 @@ const routes: Routes = [
 			},
 			{
 				path: 'activities',
-				loadChildren: () => import('./features/activities/activities.module').then(m => m.ActivitiesModule),				
+				loadChildren: () => import('./features/activities/activities.module').then(m => m.ActivitiesModule),
+			},
+			{
+				path: 'clients',
+				loadChildren: () => import('./features/clients/clients.module').then(m => m.ClientsModule),
 			},
 			{
 				path: 'home',

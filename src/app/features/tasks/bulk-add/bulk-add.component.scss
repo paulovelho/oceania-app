@@ -1,0 +1,29 @@
+.bulk-modal {
+	.row-project {
+		text-align: center;
+	}
+
+	.bulk-input {
+		height: 200px;
+		background-color: rgba(0,0,0,.04);
+	}
+
+	.activity-row {
+		margin-top: 20px;
+		::ng-deep .mat-form-field-wrapper {
+			padding-bottom: 0;
+		}
+		::ng-deep .mat-form-field-underline {
+			bottom: 0;
+		}
+	}
+
+	.summary-helper-expand, .summary-helper-content {
+		font-size: 12px;
+		color: #444;
+	}
+	.summary-helper-expand {
+		cursor: pointer;
+	}
+
+}

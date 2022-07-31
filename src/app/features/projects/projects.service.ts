@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 
 import { ProjectsApi } from './projects.api';
 import { Toaster } from '@services/toaster/toaster.service';
+import { Store } from '@services/store/store.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ export class ProjectsService {
 
 	constructor(
 		private ApiService: ProjectsApi,
+		private Toaster: Toaster,
+		private Store: Store,
 	) { }
 
 	@Output() onRefresh = new Subject<any[]>();
@@ -62,7 +65,6 @@ export class ProjectsService {
 			.CreateProject(data)
 			.toPromise()
 			.then(rs => {
-				console.info('ApiService-create', rs);
 				this.refreshList();
 				return rs;
 			});
@@ -75,10 +77,22 @@ export class ProjectsService {
 			.UpdateProject(id, data)
 			.toPromise()
 			.then(rs => {
-				console.info('ApiService-update', rs);
 				this.refreshList();
 				return rs;
 			});
+	}
+
+	public storeProject(data: any): Promise<any> {
+		return this.Store.set('main-project', { 
+			id: data.id,
+			name: data.name || '...',
+		});
+	}
+	public getStoredProject(): Promise<any> {
+		return this.Store.get('main-project');
+	}
+	public clearStoredProject(): void {
+		this.Store.remove('main-project');
 	}
 
 }

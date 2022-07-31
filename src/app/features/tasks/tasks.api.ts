@@ -43,4 +43,9 @@ export class TasksApi extends BaseApi {
 		return this.post(url, null).toPromise();
 	}
 
+	public addBulk(project_id: number, activity_id: number, tasks: string): Observable<any> {
+		let url = this.url('/tasks/:project_id/bulk-add').params({ project_id });
+		return this.post(url, { tasks, activity: activity_id });
+	}
+
 }

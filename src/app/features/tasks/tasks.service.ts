@@ -26,7 +26,6 @@ export class TasksService {
 	public refreshTasks() {
 		this.getAll()
 			.then(data => {
-				console.info('sending tasks: ', data);
 				this.tasksLoaded.next(data);
 			});
 	}
@@ -96,6 +95,16 @@ export class TasksService {
 			this.status[s.id] = s.name;
 		});
 		return this.status;
+	}
+
+	public addBulk(project_id: number, activity_id: number, tasks: string): Promise<any> {
+		return this.ApiService	
+			.addBulk(project_id, activity_id, tasks)
+			.toPromise()
+			.then(rs => {
+				this.refreshTasks();
+				return rs.data;
+			});
 	}
 
 }

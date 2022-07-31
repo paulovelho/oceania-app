@@ -39,6 +39,13 @@ export const menuItems = [
 		selected: false,
 		expanded: false,
 	},
+	{
+		title: 'Clients',
+		routerLink: 'clients',
+		icon: 'fa-building',
+		selected: false,
+		expanded: false,
+	},
 /*
 	{
 		title: 'Users',

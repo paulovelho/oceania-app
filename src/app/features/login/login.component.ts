@@ -47,16 +47,18 @@ export class LoginComponent implements OnInit {
   }
 
   public checkLogged(): void {
-    if(this.Store.isLogged()) {
-      this.router.navigate([this.homeRedirect]);
-    }
+    this.Store.isLogged()
+      .then(logged => {
+        if(logged) {
+          this.router.navigate([this.homeRedirect]);
+        }
+      });
   }
 
   public onSubmit(values:Object):void {
     if (this.form.valid) {
       this.AuthService.login(this.email.value, this.password.value)
         .then((result: any) => {
-          console.info("login result: ", result);
           if (result.success) {
             this.router.navigate([this.homeRedirect]);
           } else {
