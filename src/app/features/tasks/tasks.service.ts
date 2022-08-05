@@ -1,5 +1,8 @@
 import { Injectable, EventEmitter, Output } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
+
+import { AppState } from '@app/app.state';
+import { FilterData } from './filters/filters.component';
 
 import { ProjectsService } from '@app/features/projects/projects.service';
 import { ActivitiesService } from '@app/features/activities/activities.service';
@@ -16,18 +19,28 @@ export class TasksService {
 	public status: any[] = [];
 
 	constructor(
+		private AppState: AppState,
 		private ApiService: TasksApi,
 		private Activities: ActivitiesService,
 		private Projects: ProjectsService,
-	) { }
-
-	public tasksLoaded = new Subject<any[]>();
+	) {}
 
 	public refreshTasks() {
 		this.getAll()
 			.then(data => {
-				this.tasksLoaded.next(data);
+				this.AppState.emit("tasks", data);
 			});
+	}
+
+	public filterTasks(filter: FilterData, allTasks: any[]): any[] {
+		let tasks = allTasks;
+		if (filter.project_id) {
+			tasks = tasks.filter(t => t.project_id == filter.project_id);
+		}
+		if (filter.activity_id) {
+			tasks = tasks.filter(a => a.activity_id == filter.activity_id);
+		}
+		return tasks;
 	}
 
 	public async getAll(): Promise<any> {
@@ -48,6 +61,28 @@ export class TasksService {
 					});
 				}
 			});
+	}
+	public async GetByStatus(status: any): Promise<any> {
+		let projects = await this.Projects.getProjectList();
+		let activities = await this.Activities.getAllList();
+		return this.ApiService
+			.GetByStatus(status.id)
+			.toPromise()
+			.then(rs => {
+				if(rs.success) {
+					let data = rs.data;
+					let tasks = data.map((t: any) => {
+						t['status_name'] = status.name;
+						t['project_name'] = projects[t.project_id] ? projects[t.project_id].name : '[project '+t.project_id+']';
+						t['activity'] = activities[t.activity_id] ? activities[t.activity_id] : '???';
+						return t;
+					});
+					return tasks;
+				}
+			});
+	}
+	public GetBacklog(): Promise<any> {
+		return this.GetByStatus(Status.backlog);
 	}
 
 	public save(data: any): Promise<any> {

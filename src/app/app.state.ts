@@ -1,7 +1,14 @@
 import { Injectable, EventEmitter } from '@angular/core'
 
+// STATES:
+// - filter-updated
+// - filter-refresh
+
+
 @Injectable()
 export class AppState {
+
+	private debugOn: boolean = true;
 
 	private _states: any = {};
 	private _events: any = {};
@@ -9,8 +16,9 @@ export class AppState {
 	constructor() {
 	}
 
-	private debug(str: string, data?: any) {
-		console.info(str, data);
+	private debug(str: string, data?: any): void {
+		if(!this.debugOn) return;
+		console.info('app.state: ' + str, data);
 	}
 
 	public emit(event: string, value: any): void {
@@ -22,8 +30,9 @@ export class AppState {
 	}
 
 	public subscribe(event: string, callback: Function, defaultValue?: any): void {
-		this.debug('creating event ' + event);
+		this.debug('subscribing to ' + event);
 		if (!this._events[event]) {
+			this.debug('creating event ' + event);
 			this._events[event] = new EventEmitter<any>();
 			this._states[event] = null;
 		}
@@ -36,7 +45,7 @@ export class AppState {
 	public getEvents() {
 		return this._events;
 	}
-	public getState(event: string) {
+	public getState(event: string): any {
 		return this._states[event];
 	}
 	public getStates() {

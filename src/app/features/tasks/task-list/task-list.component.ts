@@ -1,7 +1,9 @@
-import { Component, Input, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, Input, EventEmitter, OnInit, OnChanges, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CdkDragDrop, transferArrayItem, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { TaskFormComponent } from '../task-form/task-form.component';
+import { TrelloService } from '../trello.service';
 
 @Component({
 	selector: 'app-task-list',
@@ -11,37 +13,43 @@ import { TaskFormComponent } from '../task-form/task-form.component';
 export class TaskListComponent implements OnInit {
 
 	@Input() loading: boolean = false;
-	@Input() statusIcon: string = "tasks";
 	@Input() status: any = null;
 	@Input() showAdd: boolean = false;
-	@Input() allLists = [];
+
 	@Input() tasks: any[] = [];
-	@Output() taskChange: EventEmitter<any> = new EventEmitter();
 
 	constructor(
 		private Modal: NgbModal,
+		public Trello: TrelloService,
 	) { }
 
 	ngOnInit(): void {
 	}
 
-	public drop(el: any): void {
-		console.info('dropped on: ' + this.status.name, el);
-		const task = el.item.data;
-		const listFrom = el.previousContainer.data;
-		const listTo = this.status;
-		if(listFrom.id == listTo.id) return;
-		this.taskChange.emit({
-			from: listFrom,
-			to: listTo,
+	public drop(event: CdkDragDrop<any>): void {
+		if (event.previousContainer === event.container) {
+			moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+			return;
+		}
+		const task = event.item.data;
+		transferArrayItem (
+			event.previousContainer.data,
+			event.container.data,
+			event.previousIndex,
+			event.currentIndex,
+		);
+		this.Trello.moveTaskAround({
+			newStatus: this.status,
 			task,
+		}).then((data: any) => {
+			console.info('task moved ', data);
 		});
 	}
 
 	public create(): void {
 		let modalRef = this.Modal.open(TaskFormComponent);
 		modalRef.componentInstance.status = this.status;
-		modalRef.result.then((data: any) => {
+		modalRef.result?.then((data: any) => {
 			console.info('modal result: ', data);
 		});
 	}

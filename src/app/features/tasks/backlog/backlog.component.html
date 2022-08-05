@@ -1,26 +1,20 @@
-<div class="dashboard">
-	<div class="row">
+<div class="backlog">
+	<div class="row row-filter">
 		<div class="col-sm-12">
 			<app-filters></app-filters>
 		</div>
 	</div>
 	<div class="row" cdkDropListGroup>
-		<div class="col-md-4">
+		<div class="col-md-8">
 			<app-tasks-by-status
-				[status]="status.todo"
+				[status]="status.backlog"
 				[showAdd]="true"
 			></app-tasks-by-status>
 		</div>
 		<div class="col-md-4">
 			<app-tasks-by-status
-				[status]="status.wip"
-				[showAdd]="false"
-			></app-tasks-by-status>
-		</div>
-		<div class="col-md-4">
-			<app-tasks-by-status
-				[status]="status.done"
-				[showAdd]="false"
+				[status]="status.todo"
+				[showAdd]="true"
 			></app-tasks-by-status>
 		</div>
 	</div>

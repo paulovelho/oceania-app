@@ -1,0 +1,58 @@
+<div class="filter">
+	<div class="row">
+		<div class="col-sm-5 actions">
+			<app-loading *ngIf="!projectsSelect" extraClass="small"></app-loading>
+			<div *ngIf="projectsSelect?.length > 0" class="filter-select">
+				<mat-form-field appearance="fill">
+					<mat-label>Project</mat-label>
+					<mat-select
+						[compareWith]="compareProjects"
+						[(ngModel)]="project"
+						(selectionChange)="filterChange();"
+						name="project"
+					>
+						<mat-option 
+							*ngFor="let project of projectsSelect"
+							[value]="project"
+						>
+							{{ project.name }}
+						</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+		</div>
+		<div class="col-sm-5 actions">
+			<app-loading *ngIf="!activitiesSelect" extraClass="small"></app-loading>
+			<div *ngIf="activitiesSelect?.length > 0" class="filter-select">
+				<mat-form-field appearance="fill">
+					<mat-label>Activity</mat-label>
+					<mat-select
+						[(ngModel)]="activity_id"
+						(selectionChange)="filterChange();"
+						name="activity"
+					>
+						<mat-option 
+							*ngFor="let activity of activitiesSelect"
+							[value]="activity.id"
+						>
+							{{ activity.name }}
+						</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+		</div>
+		<div class="col-sm-1 actions left">
+			<span class="action" (click)="clearFilters();"><i class="fa fa-window-close"></i></span>
+		</div>
+		<div class="col-sm-1 actions right">
+			<span class="action" (click)="refreshClick();"><i class="fa fa-sync"></i></span>
+			<span 
+				class="action"
+				(click)="addBulkTasks();"
+				*ngIf="showBulkTasks"
+			>
+				<i class="fa fa-clipboard"></i>
+			</span>
+		</div>
+	</div>
+</div>

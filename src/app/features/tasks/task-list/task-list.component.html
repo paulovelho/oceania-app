@@ -1,7 +1,7 @@
 <div widget class="card task-list">
 	<div class="card-header">
 		<span class="title" *ngIf="!loading">
-			<i class="fa fa-{{statusIcon}}"></i>
+			<i class="fa fa-{{status.icon}}"></i>
 			{{ status.name | uppercase }}
 		</span>
 		<app-loading *ngIf="loading" extraClass="small white"></app-loading>
@@ -14,11 +14,11 @@
 
 	<div 
 		cdkDropList
-		id="list-{{ status.id }}"
-		class="card-body widget-body"
-		[cdkDropListData]="status"
-		[cdkDropListConnectedTo]="allLists"
+		[cdkDropListData]="tasks"
 		(cdkDropListDropped)="drop($event)"
+		id="list-{{ status.id }}"
+		attr.data-status="{{ status }}"
+		class="card-body widget-body drop-list"
 	>
 		<div class="row">
 			<div class="col-sm-12 task-list">

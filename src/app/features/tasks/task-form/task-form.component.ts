@@ -40,9 +40,7 @@ export class TaskFormComponent implements OnInit, OnChanges {
 		}
 		this.loadBaseData();
 	}
-	ngOnChanges(changes: any): void {
-		console.info('changes: ', changes);
-	}
+	ngOnChanges(changes: any): void { }
 
 	private newTaskStart(): void {
 		this.task = {
@@ -51,6 +49,14 @@ export class TaskFormComponent implements OnInit, OnChanges {
 		if (this.status) {
 			this.task.status_id = this.status.id;
 		}
+		this.Projects.getStoredProject()
+			.then(p => {
+				this.task.project_id = p?.id;
+			});
+		this.Activities.getStoredActivity()
+			.then(a => {
+				this.task.activity_id = a?.id;
+			});
 	}
 
 	private loadBaseData(): void {

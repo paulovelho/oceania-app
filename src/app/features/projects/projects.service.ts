@@ -53,6 +53,7 @@ export class ProjectsService {
 
 	public save(data: any): Promise<any> {
 		data.active = data.active == true ? 1 : 0;
+//		this.State.updateProjects();
 		if (data.id) {
 			return this.update(data);
 		} else {

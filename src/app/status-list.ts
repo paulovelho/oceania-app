@@ -1,39 +1,48 @@
 const Status = {
 	'backlog': {
 		id: 1,
-		name: "Backlog"
+		name: "Backlog",
+		icon: "circle",
 	},
 	'todo': {
 		id: 2,
-		name: "To Do"
+		name: "To Do",
+		icon: "list-alt",
 	},
 	'queue': {
 		id: 3,
-		name: "Queue"
+		name: "Queue",
+		icon: "circle",
 	},
 	'waiting': {
 		id: 4,
-		name: "Waiting"
+		name: "Waiting",
+		icon: "circle",
 	},
 	'wip': {
 		id: 5,
-		name: "WIP"
+		name: "WIP",
+		icon: "hammer",
 	},
 	'done': {
 		id: 6,
-		name: "Done"
+		name: "Done",
+		icon: "check-circle",
 	},
 	'canceled': {
 		id: 7,
-		name: "Cancelled"
+		name: "Cancelled",
+		icon: "circle",
 	},
 	'blocked': {
 		id: 8,
-		name: "Blocked"
+		name: "Blocked",
+		icon: "circle",
 	},
 	'archived': {
 		id: 9,
-		name: "archived"
+		name: "archived",
+		icon: "circle",
 	},
 };
 
