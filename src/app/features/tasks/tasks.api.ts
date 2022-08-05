@@ -18,6 +18,10 @@ export class TasksApi extends BaseApi {
 		return this.get(url);
 	}
 
+	public GetByStatus(status_id: number): Observable<any> {
+		return this.get(this.url("/status/:status_id/tasks").params({ status_id }));
+	}
+
 	public GetOne(id: string): Observable<any> {
 		let url = this.url("/task/:id").params({ id: id });
 		return this.get(url);

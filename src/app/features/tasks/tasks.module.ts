@@ -15,8 +15,12 @@ import { TasksHomeComponent } from './tasks-home/tasks-home.component';
 
 import { TasksApi } from './tasks.api';
 import { TasksService } from './tasks.service';
+import { TrelloService } from './trello.service';
 import { TaskCardComponent } from './task-card/task-card.component';
 import { BulkAddComponent } from './bulk-add/bulk-add.component';
+import { FiltersComponent } from './filters/filters.component';
+import { BacklogComponent } from './backlog/backlog.component';
+import { TasksByStatusComponent } from './tasks-by-status/tasks-by-status.component';
 
 @NgModule({
 	imports: [
@@ -35,10 +39,14 @@ import { BulkAddComponent } from './bulk-add/bulk-add.component';
 		TasksHomeComponent,
 		TaskCardComponent,
 		BulkAddComponent,
+		FiltersComponent,
+		BacklogComponent,
+  TasksByStatusComponent,
 	],
 	providers: [
 		TasksApi,
 		TasksService,
+		TrelloService,
 	],
 	entryComponents: [
 		TaskFormComponent,

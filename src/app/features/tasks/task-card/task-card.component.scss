@@ -10,10 +10,17 @@
 		display: block;
 	}
 
-	.loading {
+	.loading, .actions {
 		position: absolute;
 		right: 10px;
 		top: 10px;
+	}
+	.actions { 
+		top: 2px;
+		i {
+			font-size: 14px;
+			cursor: pointer;
+		}
 	}
 
 	.activity {

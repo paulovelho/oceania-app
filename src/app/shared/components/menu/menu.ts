@@ -16,8 +16,8 @@ export const menuItems = [
 		expanded: false,
 	},
 	{
-		title: 'Tasks',
-		routerLink: 'tasks',
+		title: 'Backlog',
+		routerLink: 'tasks/backlog',
 		icon: 'fa-tasks',
 		selected: false,
 		expanded: false,

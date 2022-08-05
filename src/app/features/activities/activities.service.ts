@@ -20,6 +20,7 @@ export class ActivitiesService {
 	@Output() onRefresh = new Subject<any[]>();
 
 	public refreshList() {
+
 		this.getAll()
 			.then(data => {
 				this.onRefresh.next(data);
@@ -55,6 +56,7 @@ export class ActivitiesService {
 	}
 
 	public save(data: any): Promise<any> {
+//		this.State.updateActivities();
 		if (data.id) {
 			return this.update(data);
 		} else {
