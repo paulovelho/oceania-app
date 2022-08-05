@@ -41,7 +41,7 @@ export class BulkAddComponent implements OnInit {
 				if(!this.activity_id) {
 					this.ActivitiesService
 						.getStoredActivity()
-						.then(a => this.activity_id = a.id);
+						.then(a => this.activity_id = a?.id);
 				}
 			});
 	}

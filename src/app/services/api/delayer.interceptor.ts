@@ -10,7 +10,7 @@ import { Store } from '@services/store/store.service';
 @Injectable()
 export class ApiDelayerInterceptor implements HttpInterceptor {
 
-	private on: boolean = true;
+	private on: boolean = false;
 	private maxDelay:number = 2000;
 	private minDelay:number = 500;
 

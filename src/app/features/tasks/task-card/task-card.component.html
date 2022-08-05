@@ -4,15 +4,18 @@
 		<div *ngIf="task.loading" class="loading">
 			<app-loading extraClass="small"></app-loading>
 		</div>
+		<div class="actions" *ngIf="!task.loading">
+			<i class="fa fa-edit" (click)="editTask();"></i>
+		</div>
 	</mat-card-title>
 	<mat-card-subtitle>
-		<span class="activity activity-{{ task.activity_id }}">{{ task.activity?.name }}</span>
+		<span class="activity activity-{{ task.activity_id }}">{{ task.activity_name }}</span>
 	</mat-card-subtitle>
 	<mat-card-content>
 		<p class="task-desc">{{ task.task }}</p>
 	</mat-card-content>
 	<mat-card-footer>
-		<span class="hours">
+		<span class="hours" *ngIf="showHours">
 			{{ task.hours_spent }} of {{ task.hours_estimation }} hours
 		</span>
 	</mat-card-footer>

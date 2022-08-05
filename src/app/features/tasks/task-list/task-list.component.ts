@@ -47,7 +47,7 @@ export class TaskListComponent implements OnInit {
 	}
 
 	public create(): void {
-		let modalRef = this.Modal.open(TaskFormComponent);
+		let modalRef = this.Modal.open(TaskFormComponent, { windowClass: 'modal-large' });
 		modalRef.componentInstance.status = this.status;
 		modalRef.result?.then((data: any) => {
 			console.info('modal result: ', data);

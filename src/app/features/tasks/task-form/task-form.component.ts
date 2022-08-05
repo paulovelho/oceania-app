@@ -76,7 +76,8 @@ export class TaskFormComponent implements OnInit, OnChanges {
 			.then(rs => {
 				this.loading = false;
 				if (rs.success) {
-					this.close(rs.data);
+					this.task = rs.task;
+					this.close(this.task);
 				} else {
 					const data = rs.data;
 					this.Toaster.error(data.msg);
