@@ -39,3 +39,11 @@ like: `ng generate component features/projects/project-list`
 `ng generate service [service-name]`
 like: `ng generate service features/projects/projects`
 
+
+## deploy
+build and copy the content (inside `dist`)
+```
+ng build
+scp -r oceania-app platypusweb@paulovelho.com:~/oceania/oceania-app/dist/
+```
+
