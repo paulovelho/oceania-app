@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  envName: "prod",
+  production: true,
+  api: "http://api.oceania.platypusweb.com.br",
 };
