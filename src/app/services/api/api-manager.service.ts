@@ -50,13 +50,17 @@ export class ApiManager {
 	}
 
 	private ResponseManage(response: any): void {
-//    console.info("checking body ", response);
+    console.info("checking body ", response);
+		if(!response || response == undefined) return;
 		if(!response.success) {
-			return this.ErrorCodeManager(response.code, response.data)
+			let data = response.data || {};
+			if(!data || !data.message) data.message = response.message;
+			return this.ErrorCodeManager(response.code, data)
 		}
 	}
 
 	public StatusManage(event: HttpResponse<any>): void {
+		console.info('managing status ', event);
 		switch (event.status) {
 			case 200:
 			default:
@@ -66,7 +70,7 @@ export class ApiManager {
 				break;
 			case 401:
 				this.Toaster.error("Chamada não autorizada!");
-				this.ErrorCodeManager(401, null)
+				this.ErrorCodeManager(401, null);
 				break;
 		}
 	}

@@ -25,6 +25,9 @@ export class ProjectsService {
 			.then(data => {
 				this.setProjectList(data);
 				this.onRefresh.next(data);
+			})
+			.catch(err => {
+				this.Toaster.error('não foi possível atualizar a lista de projetos');
 			});
 	}
 
@@ -47,7 +50,16 @@ export class ProjectsService {
 			.GetProjects()
 			.toPromise()
 			.then(rs => {
-				if(rs.success) return rs.data;
+				if(rs.success) {
+					return rs.data;
+				} else {
+					let error = rs.message || 'error getting projects';
+					throw new Error(error);
+				}
+			})
+			.catch(err => {
+				console.error(err);
+				this.Toaster.error('unknown error getting projects');
 			});
 	}
 

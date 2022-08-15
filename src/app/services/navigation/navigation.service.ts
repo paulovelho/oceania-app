@@ -10,6 +10,10 @@ export class NavigationService {
     private router: Router
 	) { }
 
+	public Login(): void {
+		this.router.navigate(['login']);
+	}
+
 	public customerNew(): void {
 		this.router.navigate([this.pagesUrl, 'customer', 'new']);
 	}

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, from } from "rxjs";
+import { Observable, from, throwError } from "rxjs";
 import { catchError, map, timeout, switchMap } from 'rxjs/operators';
 
 import { ApiManager } from './api-manager.service';
@@ -19,7 +19,10 @@ export class ApiInterceptor implements HttpInterceptor {
 	private async SetHeaders(req: HttpRequest<any>): Promise<HttpRequest<any>> {
 		let headers: any = {};
 		let token = await this.Store.getToken();
-		if(token == null) return req;
+		if(token == null) {
+			console.info('not logged');
+			return req;
+		}
 		return req.clone({
 			headers: req.headers
 				.set('Authorization', 'Bearer ' + token)
@@ -35,12 +38,12 @@ export class ApiInterceptor implements HttpInterceptor {
 	}
 
 	private CatchError(err: any) {
-//		this.Manager.StatusManage(err);
+		this.Manager.StatusManage(err);
 		let error = err.error 
 							? err.error.data ? err.error.data : err.error
 							: err.error;
 		console.info(error);
-		return Observable.throw(error);
+		return throwError(error);
 	}
 
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {

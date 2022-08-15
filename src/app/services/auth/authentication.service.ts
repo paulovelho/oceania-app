@@ -39,4 +39,8 @@ export class AuthService {
 			});
 	}
 
+	public logout(): void {
+		this.Store.clean();
+		this.Navigation.Login();
+	}
 }

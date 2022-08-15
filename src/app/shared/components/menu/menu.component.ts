@@ -4,6 +4,8 @@ import * as jQuery from 'jquery';
 import { MenuService } from './menu.service';
 import { AppState } from '@app/app.state';
 
+import { AuthService } from '@services/auth/authentication.service';
+
 @Component({
 	selector: 'app-menu',
 	encapsulation: ViewEncapsulation.None,
@@ -29,6 +31,7 @@ export class MenuComponent implements OnInit {
 		private _activatedRoute:ActivatedRoute,
 		private _state: AppState,
 		private _menuService:MenuService,
+		private auth: AuthService,
 	) {
 		
 		this.menuItems = _menuService.getMenuItems();
@@ -130,5 +133,8 @@ export class MenuComponent implements OnInit {
 		this._state.emit('menu.isCollapsed', this.isMenuCollapsed);
 	}
 
+	public logout(): void {
+		this.auth.logout();
+	}
 
 }

@@ -46,6 +46,7 @@ export const menuItems = [
 		selected: false,
 		expanded: false,
 	},
+
 /*
 	{
 		title: 'Users',

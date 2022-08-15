@@ -17,7 +17,7 @@ export class Toaster {
 	}
 
 	private debug(type: string, message: string): void {
-		console.trace(type + " toaster with message ["+message+"]");
+//		console.trace(type + " toaster with message ["+message+"]");
 	}
 
 	public error(message: string): void {

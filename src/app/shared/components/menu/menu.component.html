@@ -70,6 +70,17 @@
 			</ul>
 
 		</li>
+
+		<li class="sidebar-list-item">
+			<a 
+				class="sidebar-list-link link-click separator"
+				(click)="logout();"
+			>
+				<i class="fa fa-sign-out-alt"></i><span>Logout</span>
+			</a>
+		</li>
+
+
 	</ul>
 	<div class="sidebar-hover-elem" [ngStyle]="{top: hoverElemTop + 'px', height: hoverElemHeight + 'px'}" [ngClass]="{'show-hover-elem': showHoverElem }"></div>
 </div>
