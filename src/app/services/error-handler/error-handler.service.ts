@@ -16,9 +16,10 @@ export class ErrorHandler {
 	) {}
 
 	public ErrorCodeManager(code: number, data: any): void {
+		console.error('error code ' + code, data);
 		switch (code) {
 			case 0:
-				this.Toaster.error(data.message);
+				this.Toaster.error("ERRO DE API: " + data.message);
 				break;
 			case 1001:
 				this.Toaster.error("parâmetros de busca inválidos");

@@ -29,6 +29,10 @@ export class AppConfig {
 		};
 	}
 
+	public debug(): void {
+		console.info( this.env );
+	}
+
 	public getEnv(): string {
 	  return this.envName;
 	}
