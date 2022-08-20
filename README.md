@@ -44,6 +44,6 @@ like: `ng generate service features/projects/projects`
 build and copy the content (inside `dist`)
 ```
 ng build
-scp -r oceania-app platypusweb@paulovelho.com:~/oceania/oceania-app/dist/
+scp -r dist/oceania-app platypusweb@paulovelho.com:~/oceania/oceania-app/dist/
 ```
 
