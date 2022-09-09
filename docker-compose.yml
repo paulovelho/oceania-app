@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+
+  oceania_php:
+    hostname: oceania-app.localhost.com
+    container_name: "oceania-prod"
+    volumes: 
+      - ./dist/oceania-app:/var/www
+    ports:
+      - "80:80"
+      - "443:443"

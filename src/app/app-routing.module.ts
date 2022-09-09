@@ -7,7 +7,7 @@ import { ErrorComponent } from './shared/error/error.component';
 const routes: Routes = [
 	{ path: '', redirectTo: 'login', pathMatch: 'full' },
 	{ 
-		path: 'login', 
+		path: 'login',
 		loadChildren: () => import('./features/login/login.module').then(m => m.LoginModule),
 	},
 	{
@@ -46,7 +46,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes)],
+	imports: [RouterModule.forRoot(routes, { useHash: true })],
 	exports: [RouterModule]
 })
 export class AppRoutingModule { }

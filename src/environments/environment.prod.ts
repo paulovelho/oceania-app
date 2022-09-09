@@ -1,5 +1,5 @@
 export const environment = {
   envName: "prod",
   production: true,
-  api: "http://api.oceania.platypusweb.com.br",
+  api: "https://api.oceania.platypusweb.com.br",
 };

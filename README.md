@@ -40,10 +40,26 @@ like: `ng generate component features/projects/project-list`
 like: `ng generate service features/projects/projects`
 
 
+
+
+
+
 ## deploy
 build and copy the content (inside `dist`)
 ```
 ng build
 scp -r dist/oceania-app platypusweb@paulovelho.com:~/oceania/oceania-app/dist/
 ```
+
+## docker
+```
+
+docker run -d \
+    -v /Users/paulohenriquemartins/Paulo/oceania-app/dist/oceania-app:/web \
+    -p 8080:8080 \
+    halverneus/static-file-server:latest
+
+```
+
+
 
